@@ -3,6 +3,8 @@ package demo;
 import java.awt.*;
 import desplazable.Desface;
 
+import java.awt.geom.Point2D;
+
 public class Pantalla extends javax.swing.JFrame {
     private Desface desplace;
     private int xMouse, yMouse;
@@ -646,6 +648,9 @@ public class Pantalla extends javax.swing.JFrame {
 
         CurvaBtn.setBackground(new java.awt.Color(255, 255, 255));
         CurvaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CurvaBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CurvaBtnMouseEntered(evt);
             }
@@ -890,9 +895,9 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_lineaBtnMouseExited
 
     private void CurvaBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CurvaBtnMouseExited
-
+        
     }//GEN-LAST:event_CurvaBtnMouseExited
-
+    
     private void segmentadoBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentadoBtnMouseExited
 
     }//GEN-LAST:event_segmentadoBtnMouseExited
@@ -1028,7 +1033,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_verdeOscMouseClicked
 
     private void segmentadoBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentadoBtn1MouseClicked
-        // TODO add your handling code here:
+        System.out.println("Segmentado");
     }//GEN-LAST:event_segmentadoBtn1MouseClicked
 
     private void segmentadoBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentadoBtn1MouseEntered
@@ -1040,7 +1045,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_segmentadoBtn1MouseExited
 
     private void girarBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn1MouseClicked
-        // TODO add your handling code here:
+        System.out.println("Girar");
     }//GEN-LAST:event_girarBtn1MouseClicked
 
     private void girarBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn1MouseEntered
@@ -1052,7 +1057,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_girarBtn1MouseExited
 
     private void girarBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn2MouseClicked
-        // TODO add your handling code here:
+        System.out.println("Girar");
     }//GEN-LAST:event_girarBtn2MouseClicked
 
     private void girarBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn2MouseEntered
@@ -1093,6 +1098,21 @@ public class Pantalla extends javax.swing.JFrame {
         paletaHSV.setVisible(true);
         desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 10, 1);
     }//GEN-LAST:event_hsvBtnMouseClicked
+
+    private void CurvaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CurvaBtnMouseClicked
+        //Ejemplo de como se debe usar los colores
+        Graphics g = Lienzo.getGraphics();
+        verificarColor();
+        g.setColor(color);      
+        Bezier curva = new Bezier();
+        
+            Point2D puntoA = new Point2D.Double(100, 200);
+            Point2D puntoB = new Point2D.Double(700, 500);
+            Point2D puntoC = new Point2D.Double(300, 600);
+            Point2D puntoD = new Point2D.Double(600, 100);
+        
+        curva.drawBezier((Graphics2D) g, puntoA, puntoB, puntoC, puntoD);
+    }//GEN-LAST:event_CurvaBtnMouseClicked
 
     private void verificarColor(){
         Color aux = paletaRGB.getColor();
