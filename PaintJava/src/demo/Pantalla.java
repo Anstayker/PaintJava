@@ -923,17 +923,34 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_segmentadoBtnMouseClicked
 
     private void cuadradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuadradoMouseClicked
-        System.out.println("Dibujar cuadrilatero");
+        Graphics g = Lienzo.getGraphics();
+        verificarColor();
+        g.setColor(color);
+        
+        Cuadrado cuadrado = new Cuadrado();
+        cuadrado.drawCuadrado(g, 200, 200, 300, 300);
+        
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_cuadradoMouseClicked
 
     private void trianguloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trianguloMouseClicked
-        System.out.println("Dibujar triangulo");
+        Graphics g = Lienzo.getGraphics();
+        verificarColor();
+        g.setColor(color);
+        
+        Triangulo triangulo = new Triangulo();
+        triangulo.drawTriangulo(g, 300, 100, 200, 300, 400, 300);
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_trianguloMouseClicked
 
     private void circuloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_circuloMouseClicked
-        System.out.println("Dibujar circunferencia");
+        Graphics g = Lienzo.getGraphics();
+        verificarColor();
+        g.setColor(color);
+        
+        Circunferencia circulo = new Circunferencia();
+        circulo.drawCirculo(g, 400, 400, 100);
+        
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_circuloMouseClicked
 
@@ -1087,11 +1104,11 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_pequenioBtnMouseClicked
 
     private void lineaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineaBtnMouseClicked
-        //Ejemplo de como se debe usar los colores
         Graphics g = Lienzo.getGraphics();
         verificarColor();
-        g.setColor(color);      
-        g.drawLine(0, 0, 100, 100);
+        g.setColor(color);
+        Linea linea = new Linea();
+        linea.drawLinea(g, 100, 100, 300, 300);
     }//GEN-LAST:event_lineaBtnMouseClicked
 
     private void hsvBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hsvBtnMouseClicked
