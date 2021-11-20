@@ -16,6 +16,11 @@ public class Cuadrado extends JPanel {
         y1 = yFinal;
         paint(g);
     }
+    /**public void drawFondo(Graphics g, JPanel panel){
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+        paint(g);
+    }**/
     
     public void paint(Graphics g) {
     int xc0 = x0, yc0 = y0 ,xc1 = x1, yc1 = y1;

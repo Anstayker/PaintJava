@@ -4,6 +4,10 @@ import java.awt.*;
 import desplazable.Desface;
 
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Pantalla extends javax.swing.JFrame {
     private Desface desplace;
@@ -11,11 +15,15 @@ public class Pantalla extends javax.swing.JFrame {
     private Color color = new Color (0,0,0);
     private Colores paletaRGB = new Colores();
     private ColoresHSV paletaHSV = new ColoresHSV();
+    private BufferedImage image;
+    private Graphics2D imageGraphics;
     
     public Pantalla() {
         initComponents();
         desplace = new Desface();
         this.setLocationRelativeTo(null);
+        image = new BufferedImage(Lienzo.getWidth(), this.Lienzo.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        imageGraphics = image.createGraphics();
         
     }
 
@@ -855,7 +863,13 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_LienzoMouseClicked
 
     private void guardarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarBtnMouseClicked
-        System.out.print("Guardado");
+        File file = new File("Imagen.png");
+        try {
+        ImageIO.write(image, "png", file); // Salvar la imagen en el fichero
+        } catch (IOException ex) {
+        System.out.println("Error al guardar archivo.");
+        }
+        System.out.println("Imagen Guardada");
     }//GEN-LAST:event_guardarBtnMouseClicked
 
     private void guardarBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarBtnMouseEntered
@@ -929,6 +943,9 @@ public class Pantalla extends javax.swing.JFrame {
         
         Cuadrado cuadrado = new Cuadrado();
         cuadrado.drawCuadrado(g, 200, 200, 300, 300);
+        imageGraphics.setColor(color);
+        //cuadrado.drawFondo(imageGraphics, Lienzo);
+        cuadrado.drawCuadrado(imageGraphics,100, 100, 300, 300);
         
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_cuadradoMouseClicked
@@ -940,6 +957,8 @@ public class Pantalla extends javax.swing.JFrame {
         
         Triangulo triangulo = new Triangulo();
         triangulo.drawTriangulo(g, 300, 100, 200, 300, 400, 300);
+        imageGraphics.setColor(color);
+        triangulo.drawTriangulo(imageGraphics,300, 100, 200, 300, 400, 300);
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_trianguloMouseClicked
 
@@ -950,6 +969,8 @@ public class Pantalla extends javax.swing.JFrame {
         
         Circunferencia circulo = new Circunferencia();
         circulo.drawCirculo(g, 400, 400, 100);
+        imageGraphics.setColor(color);
+        circulo.drawCirculo(imageGraphics, 400, 400, 100);
         
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_circuloMouseClicked
@@ -1109,6 +1130,9 @@ public class Pantalla extends javax.swing.JFrame {
         g.setColor(color);
         Linea linea = new Linea();
         linea.drawLinea(g, 100, 100, 300, 300);
+        
+        imageGraphics.setColor(color);
+        linea.drawLinea(imageGraphics,100, 100, 300, 300);
     }//GEN-LAST:event_lineaBtnMouseClicked
 
     private void hsvBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hsvBtnMouseClicked
@@ -1129,6 +1153,8 @@ public class Pantalla extends javax.swing.JFrame {
             Point2D puntoD = new Point2D.Double(600, 100);
         
         curva.drawBezier((Graphics2D) g, puntoA, puntoB, puntoC, puntoD);
+        imageGraphics.setColor(color);
+        curva.drawBezier(imageGraphics,puntoA, puntoB, puntoC, puntoD);
     }//GEN-LAST:event_CurvaBtnMouseClicked
 
     private void verificarColor(){
