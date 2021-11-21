@@ -34,6 +34,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
     private Color currentColor;
     
     private Polygon poligono = new Polygon();
+    private Almacen almacen = new Almacen();
     
     @Override
     public void mouseClicked(MouseEvent event) {
@@ -59,6 +60,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.setColor(currentColor);
                     
                     linea.drawLinea(graphics, xInicial, yInicial, xFinal, yFinal);
+                    almacen.getLineasAlm().add(new LineaDato(xInicial, xFinal, yInicial, yFinal));
                     linea.drawLinea(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -82,6 +84,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.setColor(currentColor);
                     
                     cuadrado.drawCuadrado(graphics, xInicial, yInicial, xFinal, yFinal);
+                    almacen.getCuadradosAlm().add(new CuadradoDato(xInicial, xFinal, yInicial, yFinal));
                     cuadrado.drawCuadrado(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -109,6 +112,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.setColor(currentColor);
                     
                     triangulo.drawTriangulo(graphics, x0, y0, x1, y1, x2, y2);
+                    almacen.getTriangulosAlm().add(new TrianguloDato(x0, y0, x1, y1, x2, y2)); 
                     triangulo.drawTriangulo(imageGraphics, x0, y0, x1, y1, x2, y2);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -133,6 +137,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.setColor(currentColor);
                     
                     circulo.drawCirculo(graphics, xCentro, yCentro, (int) radio);
+                    almacen.getCirculosAlm().add(new CirculoDato((int)radio, xCentro, yCentro));
                     circulo.drawCirculo(imageGraphics, yCentro, yCentro, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -163,6 +168,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                         Bezier curva = new Bezier();
                          curva.drawBezier((Graphics2D) graphics, points);
                          curva.drawBezier((Graphics2D) imageGraphics, points);
+                         almacen.getCurvaAlm().add(new CurvaDato(points));
                          coordenadasX.clear();
                          coordenadasY.clear();
                         System.out.println("Click derecho");
@@ -212,6 +218,9 @@ public class Mouse implements MouseListener, MouseMotionListener{
  
     public void setImageGraphics(Graphics graphics) {
         this.imageGraphics = graphics;
+    }
+    public Almacen getAlmacen(){
+        return almacen;
     }
     
 }

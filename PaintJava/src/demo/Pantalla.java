@@ -2,12 +2,14 @@ package demo;
 
 import java.awt.*;
 import desplazable.Desface;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class Pantalla extends javax.swing.JFrame {
@@ -73,6 +75,10 @@ public class Pantalla extends javax.swing.JFrame {
         grandeBtn = new javax.swing.JLabel();
         pequenioBtn = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         menu = new javax.swing.JPanel();
         guardarBtn = new javax.swing.JPanel();
         guardarImg = new javax.swing.JLabel();
@@ -578,6 +584,38 @@ public class Pantalla extends javax.swing.JFrame {
         menuTam.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 0, 10, 50));
 
         Lienzo.add(menuTam, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 280, 90, 48));
+
+        jButton1.setText("Up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        Lienzo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, -1, -1));
+
+        jButton2.setText("Left");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        Lienzo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
+
+        jButton3.setText("Right");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        Lienzo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 500, -1, -1));
+
+        jButton4.setText("Down");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        Lienzo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
 
         getContentPane().add(Lienzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 770, 570));
 
@@ -1153,6 +1191,148 @@ public class Pantalla extends javax.swing.JFrame {
         imageGraphics.setColor(color);
     }//GEN-LAST:event_CurvaBtnMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Graphics g = Lienzo.getGraphics();
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
+            Linea l = new Linea ();            
+            l.drawLinea(g, linea.getX0(), linea.getY0() -5, linea.getX1(), linea.getY1() -5);            
+            linea.setY0(linea.getY0()-5);
+            linea.setY1(linea.getY1()-5);            
+        }
+        for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
+            Cuadrado c = new Cuadrado();
+            c.drawCuadrado(g, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
+            cuadrado.setY0(cuadrado.getY0()-5);
+            cuadrado.setY1(cuadrado.getY1()-5);
+        }
+        for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
+            Triangulo t = new Triangulo();
+            t.drawTriangulo(g, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
+            triangulo.setY1(triangulo.getY1()-5);
+            triangulo.setY2(triangulo.getY2()-5);
+            triangulo.setY3(triangulo.getY3()-5);
+        }
+        for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
+            Circunferencia c = new Circunferencia();
+            c.drawCirculo(g, circulo.getxC(), circulo.getyC()-5, circulo.getRadio());
+            circulo.setyC(circulo.getyC()-5);            
+        }
+        for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
+            Bezier b = new Bezier();
+            Point2D[] pts = curva.getPuntos();
+            b.drawBezier((Graphics2D)g, curva.moverPtsCurvaArriba());
+            curva.moverPtsCurvaArriba();
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Graphics g = Lienzo.getGraphics();
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
+            Linea l = new Linea ();            
+            l.drawLinea(g, linea.getX0()-5, linea.getY0(), linea.getX1()-5, linea.getY1());            
+            linea.setX0(linea.getX0()-5);
+            linea.setX1(linea.getX1()-5);            
+        }
+        for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
+            Cuadrado c = new Cuadrado();
+            c.drawCuadrado(g, cuadrado.getX0()-5, cuadrado.getY0(), cuadrado.getX1()-5, cuadrado.getY1());
+            cuadrado.setX0(cuadrado.getX0()-5);
+            cuadrado.setX1(cuadrado.getX1()-5);
+        }
+        for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
+            Triangulo t = new Triangulo();
+            t.drawTriangulo(g, triangulo.getX1()-5, triangulo.getY1(), triangulo.getX2()-5, triangulo.getY2(),triangulo.getX3()-5, triangulo.getY3());
+            triangulo.setX1(triangulo.getX1()-5);
+            triangulo.setX2(triangulo.getX2()-5);
+            triangulo.setX3(triangulo.getX3()-5);
+        }
+        for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
+            Circunferencia c = new Circunferencia();
+            c.drawCirculo(g, circulo.getxC()-5, circulo.getyC(), circulo.getRadio());
+            circulo.setxC(circulo.getxC()-5);            
+        }
+        for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
+            Bezier b = new Bezier();
+            Point2D[] pts = curva.getPuntos();
+            b.drawBezier((Graphics2D)g, curva.moverPtsCurvaIzquierda());
+            curva.moverPtsCurvaIzquierda();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Graphics g = Lienzo.getGraphics();
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
+            Linea l = new Linea ();            
+            l.drawLinea(g, linea.getX0(), linea.getY0() +5, linea.getX1(), linea.getY1() +5);            
+            linea.setY0(linea.getY0()+5);
+            linea.setY1(linea.getY1()+5);            
+        }
+        for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
+            Cuadrado c = new Cuadrado();
+            c.drawCuadrado(g, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
+            cuadrado.setY0(cuadrado.getY0()+5);
+            cuadrado.setY1(cuadrado.getY1()+5);
+        }
+        for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
+            Triangulo t = new Triangulo();
+            t.drawTriangulo(g, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
+            triangulo.setY1(triangulo.getY1()+5);
+            triangulo.setY2(triangulo.getY2()+5);
+            triangulo.setY3(triangulo.getY3()+5);
+        }
+        for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
+            Circunferencia c = new Circunferencia();
+            c.drawCirculo(g, circulo.getxC(), circulo.getyC()+5, circulo.getRadio());
+            circulo.setyC(circulo.getyC()+5);            
+        }
+        for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
+            Bezier b = new Bezier();
+            Point2D[] pts = curva.getPuntos();
+            b.drawBezier((Graphics2D)g, curva.moverPtsCurvaAbajo());
+            curva.moverPtsCurvaAbajo();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Graphics g = Lienzo.getGraphics();
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
+            Linea l = new Linea ();            
+            l.drawLinea(g, linea.getX0()+5, linea.getY0(), linea.getX1()+5, linea.getY1());            
+            linea.setX0(linea.getX0()+5);
+            linea.setX1(linea.getX1()+5);            
+        }
+        for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
+            Cuadrado c = new Cuadrado();
+            c.drawCuadrado(g, cuadrado.getX0()+5, cuadrado.getY0(), cuadrado.getX1()+5, cuadrado.getY1());
+            cuadrado.setX0(cuadrado.getX0()+5);
+            cuadrado.setX1(cuadrado.getX1()+5);
+        }
+        for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
+            Triangulo t = new Triangulo();
+            t.drawTriangulo(g, triangulo.getX1()+5, triangulo.getY1(), triangulo.getX2()+5, triangulo.getY2(),triangulo.getX3()+5, triangulo.getY3());
+            triangulo.setX1(triangulo.getX1()+5);
+            triangulo.setX2(triangulo.getX2()+5);
+            triangulo.setX3(triangulo.getX3()+5);
+        }
+        for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
+            Circunferencia c = new Circunferencia();
+            c.drawCirculo(g, circulo.getxC()+5, circulo.getyC(), circulo.getRadio());
+            circulo.setxC(circulo.getxC()+5);            
+        }
+        for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
+            Bezier b = new Bezier();
+            Point2D[] pts = curva.getPuntos();
+            b.drawBezier((Graphics2D)g, curva.moverPtsCurvaDerecha());
+            curva.moverPtsCurvaDerecha();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void verificarColor(){
         Color aux = paletaRGB.getColor();
         Color aux2 = paletaHSV.getColor();
@@ -1228,6 +1408,10 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel guardarImg;
     private javax.swing.JLabel guardartxt;
     private javax.swing.JButton hsvBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
