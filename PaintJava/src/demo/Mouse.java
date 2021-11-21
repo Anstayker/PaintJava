@@ -28,6 +28,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
     
     private String figura = "";
     private Graphics graphics;
+    private Graphics imageGraphics;
     
     @Override
     public void mouseClicked(MouseEvent event) {
@@ -45,6 +46,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     int xFinal = coordenadasX.get(1);
                     int yFinal = coordenadasY.get(1);
                     linea.drawLinea(graphics, xInicial, yInicial, xFinal, yFinal);
+                    linea.drawLinea(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
                }
@@ -59,6 +61,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     int xFinal = coordenadasX.get(1);
                     int yFinal = coordenadasY.get(1);
                     cuadrado.drawCuadrado(graphics, xInicial, yInicial, xFinal, yFinal);
+                    cuadrado.drawCuadrado(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
                }
@@ -76,6 +79,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     int x2 = coordenadasX.get(2);
                     int y2 = coordenadasY.get(2);
                     triangulo.drawTriangulo(graphics, x0, y0, x1, y1, x2, y2);
+                    triangulo.drawTriangulo(imageGraphics, x0, y0, x1, y1, x2, y2);
                     coordenadasX.clear();
                     coordenadasY.clear();
                }
@@ -91,6 +95,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     int yFinal = coordenadasY.get(1);
                     double radio = Math.hypot(xCentro - xFinal, yCentro - yFinal);
                     circulo.drawCirculo(graphics, xCentro, yCentro, (int) radio);
+                    circulo.drawCirculo(imageGraphics, yCentro, yCentro, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
                }
@@ -110,6 +115,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     
                     if (SwingUtilities.isRightMouseButton(event)) {
                          curva.drawBezier((Graphics2D) graphics, points);
+                         curva.drawBezier((Graphics2D) imageGraphics, points);
                          coordenadasX.clear();
                          coordenadasY.clear();
                         System.out.println("Click derecho");
@@ -156,5 +162,8 @@ public class Mouse implements MouseListener, MouseMotionListener{
         this.graphics = graphics;
     }
  
+    public void setImageGraphics(Graphics graphics) {
+        this.imageGraphics = graphics;
+    }
     
 }

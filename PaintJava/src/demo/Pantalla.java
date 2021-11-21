@@ -28,6 +28,7 @@ public class Pantalla extends javax.swing.JFrame {
         imageGraphics = image.createGraphics();
         imageGraphics.setBackground(new java.awt.Color(255,255,255));
         mouse = new Mouse();
+        mouse.setImageGraphics(imageGraphics);
         Lienzo.addMouseListener(mouse);
     }
 
@@ -947,9 +948,7 @@ public class Pantalla extends javax.swing.JFrame {
         mouse.setFigura("Cuadrado");
         mouse.setGraphics(g);
         
-        Cuadrado cuadrado = new Cuadrado();
         imageGraphics.setColor(color);
-        cuadrado.drawCuadrado(imageGraphics,100, 100, 300, 300);
         
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_cuadradoMouseClicked
@@ -960,11 +959,8 @@ public class Pantalla extends javax.swing.JFrame {
         g.setColor(color);
         mouse.setFigura("Triangulo");
         mouse.setGraphics(g);
-        
-        Triangulo triangulo = new Triangulo();
-        //triangulo.drawTriangulo(g, 300, 100, 200, 300, 400, 300);
         imageGraphics.setColor(color);
-        triangulo.drawTriangulo(imageGraphics,300, 100, 200, 300, 400, 300);
+       
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_trianguloMouseClicked
 
@@ -974,11 +970,8 @@ public class Pantalla extends javax.swing.JFrame {
         g.setColor(color);
         mouse.setFigura("Circulo");
         mouse.setGraphics(g);
-        
-        Circunferencia circulo = new Circunferencia();
 
         imageGraphics.setColor(color);
-        circulo.drawCirculo(imageGraphics, 400, 400, 100);
         
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_circuloMouseClicked
@@ -1142,7 +1135,6 @@ public class Pantalla extends javax.swing.JFrame {
         mouse.setGraphics(g);
         
         imageGraphics.setColor(color);
-        linea.drawLinea(imageGraphics,100, 100, 300, 300);
     }//GEN-LAST:event_lineaBtnMouseClicked
 
     private void hsvBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hsvBtnMouseClicked
@@ -1158,15 +1150,7 @@ public class Pantalla extends javax.swing.JFrame {
         mouse.setFigura("Curva");
         mouse.setGraphics(g);
         
-        Bezier curva = new Bezier();
-        
-            Point2D puntoA = new Point2D.Double(100, 200);
-            Point2D puntoB = new Point2D.Double(700, 500);
-            Point2D puntoC = new Point2D.Double(300, 600);
-            Point2D puntoD = new Point2D.Double(600, 100);
-        
         imageGraphics.setColor(color);
-        curva.drawBezier(imageGraphics,puntoA, puntoB, puntoC, puntoD);
     }//GEN-LAST:event_CurvaBtnMouseClicked
 
     private void verificarColor(){
@@ -1182,6 +1166,7 @@ public class Pantalla extends javax.swing.JFrame {
             }
         }
     }
+    
     /**
      * @param args the command line arguments
      */
