@@ -12,7 +12,8 @@ public class Linea extends JPanel {
 
     private int x0, y0, x1, y1;
 
-    private int grosor = 10;
+    private int grosor = 1;
+    private boolean segmentar = false;
     
     public void drawLinea(Graphics g, int xInicial,int yInicial,int xFinal,int yFinal) {
         x0 = xInicial;
@@ -25,7 +26,7 @@ public class Linea extends JPanel {
     
     public void paint(Graphics2D g) {
         super.paint(g);
-        float Xinc,Yinc,x,y,delta;
+       float Xinc,Yinc,x,y,delta;
        int i;
        if(Math.abs(x1-x0)>=Math.abs(y1-y0)){
           delta=Math.abs(x1-x0);
@@ -39,20 +40,34 @@ public class Linea extends JPanel {
        y=(float)y0;
 
        i=0;
+       g.setStroke(new BasicStroke(grosor));
+       boolean dibujarSegmento = true;
+       int contadorDeSegmento = 0;
+       
        while(i<=delta){
           //setPixel(roundf(x),roundf(y));
           x=x+Xinc;
           y=y+Yinc;
           i++;
           
-          //float guiones[] = {5,5};
-          //g.setStroke(new BasicStroke(grosor, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 0,guiones,0));
-          g.setStroke(new BasicStroke(grosor));
+          if(contadorDeSegmento > 4) {
+              dibujarSegmento = false;
+          }
+        
+          if(contadorDeSegmento >= 12) {
+              dibujarSegmento = true;
+              contadorDeSegmento = 0;
+          }
+            contadorDeSegmento++;
           
-          g.drawLine( Math.round(x),Math.round(y),Math.round(x), Math.round(y));
+          if (dibujarSegmento) {
+             g.drawLine( Math.round(x),Math.round(y),Math.round(x), Math.round(y));
+          }
+          
+          
         }
     }
-
+    
     public void setX0(int xInicial) {
         x0 = xInicial;
     }
