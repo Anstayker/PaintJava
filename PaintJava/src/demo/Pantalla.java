@@ -18,6 +18,7 @@ public class Pantalla extends javax.swing.JFrame {
     private ColoresHSV paletaHSV = new ColoresHSV();
     private BufferedImage image;
     private Graphics2D imageGraphics;
+    private Mouse mouse;
     
     public Pantalla() {
         initComponents();
@@ -26,9 +27,8 @@ public class Pantalla extends javax.swing.JFrame {
         image = new BufferedImage(Lienzo.getWidth(), this.Lienzo.getHeight(), BufferedImage.TYPE_INT_ARGB);
         imageGraphics = image.createGraphics();
         imageGraphics.setBackground(new java.awt.Color(255,255,255));
-        Mouse mouse = new Mouse();
+        mouse = new Mouse();
         Lienzo.addMouseListener(mouse);
-        System.out.println(mouse);
     }
 
     @SuppressWarnings("unchecked")
@@ -944,11 +944,11 @@ public class Pantalla extends javax.swing.JFrame {
         Graphics g = Lienzo.getGraphics();
         verificarColor();
         g.setColor(color);
+        mouse.setFigura("Cuadrado");
+        mouse.setGraphics(g);
         
         Cuadrado cuadrado = new Cuadrado();
-        cuadrado.drawCuadrado(g, 200, 200, 300, 300);
         imageGraphics.setColor(color);
-        //cuadrado.drawFondo(imageGraphics, Lienzo);
         cuadrado.drawCuadrado(imageGraphics,100, 100, 300, 300);
         
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
@@ -958,9 +958,11 @@ public class Pantalla extends javax.swing.JFrame {
         Graphics g = Lienzo.getGraphics();
         verificarColor();
         g.setColor(color);
+        mouse.setFigura("Triangulo");
+        mouse.setGraphics(g);
         
         Triangulo triangulo = new Triangulo();
-        triangulo.drawTriangulo(g, 300, 100, 200, 300, 400, 300);
+        //triangulo.drawTriangulo(g, 300, 100, 200, 300, 400, 300);
         imageGraphics.setColor(color);
         triangulo.drawTriangulo(imageGraphics,300, 100, 200, 300, 400, 300);
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
@@ -970,9 +972,11 @@ public class Pantalla extends javax.swing.JFrame {
         Graphics g = Lienzo.getGraphics();
         verificarColor();
         g.setColor(color);
+        mouse.setFigura("Circulo");
+        mouse.setGraphics(g);
         
         Circunferencia circulo = new Circunferencia();
-        circulo.drawCirculo(g, 400, 400, 100);
+
         imageGraphics.setColor(color);
         circulo.drawCirculo(imageGraphics, 400, 400, 100);
         
@@ -1133,7 +1137,9 @@ public class Pantalla extends javax.swing.JFrame {
         verificarColor();
         g.setColor(color);
         Linea linea = new Linea();
-        linea.drawLinea(g, 100, 100, 300, 300);
+
+        mouse.setFigura("Linea");
+        mouse.setGraphics(g);
         
         imageGraphics.setColor(color);
         linea.drawLinea(imageGraphics,100, 100, 300, 300);
@@ -1148,7 +1154,10 @@ public class Pantalla extends javax.swing.JFrame {
         //Ejemplo de como se debe usar los colores
         Graphics g = Lienzo.getGraphics();
         verificarColor();
-        g.setColor(color);      
+        g.setColor(color);
+        mouse.setFigura("Curva");
+        mouse.setGraphics(g);
+        
         Bezier curva = new Bezier();
         
             Point2D puntoA = new Point2D.Double(100, 200);
@@ -1156,7 +1165,6 @@ public class Pantalla extends javax.swing.JFrame {
             Point2D puntoC = new Point2D.Double(300, 600);
             Point2D puntoD = new Point2D.Double(600, 100);
         
-        curva.drawBezier((Graphics2D) g, puntoA, puntoB, puntoC, puntoD);
         imageGraphics.setColor(color);
         curva.drawBezier(imageGraphics,puntoA, puntoB, puntoC, puntoD);
     }//GEN-LAST:event_CurvaBtnMouseClicked
