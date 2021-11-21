@@ -5,8 +5,10 @@
  */
 package demo;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -29,6 +31,9 @@ public class Mouse implements MouseListener, MouseMotionListener{
     private String figura = "";
     private Graphics graphics;
     private Graphics imageGraphics;
+    private Color currentColor;
+    
+    private Polygon poligono = new Polygon();
     
     @Override
     public void mouseClicked(MouseEvent event) {
@@ -39,12 +44,20 @@ public class Mouse implements MouseListener, MouseMotionListener{
            case "Linea":
                coordenadasX.add(mouseX);
                coordenadasY.add(mouseY);
+               graphics.fillOval(mouseX, mouseY, 5, 5);
                if (coordenadasX.size() == 2 && coordenadasY.size() == 2) {
                     Linea linea = new Linea();
                     int xInicial = coordenadasX.get(0);
                     int yInicial = coordenadasY.get(0);
                     int xFinal = coordenadasX.get(1);
                     int yFinal = coordenadasY.get(1);
+                    
+                    currentColor = graphics.getColor();
+                    graphics.setColor(Color.WHITE);
+                    graphics.fillOval(xInicial, yInicial, 5, 5);
+                    graphics.fillOval(xFinal, yFinal, 5, 5);
+                    graphics.setColor(currentColor);
+                    
                     linea.drawLinea(graphics, xInicial, yInicial, xFinal, yFinal);
                     linea.drawLinea(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
@@ -54,12 +67,20 @@ public class Mouse implements MouseListener, MouseMotionListener{
            case "Cuadrado":
                coordenadasX.add(mouseX);
                coordenadasY.add(mouseY);
+               graphics.fillOval(mouseX, mouseY, 5, 5);
                if (coordenadasX.size() == 2 && coordenadasY.size() == 2) {
                     Cuadrado cuadrado = new Cuadrado();
                     int xInicial = coordenadasX.get(0);
                     int yInicial = coordenadasY.get(0);
                     int xFinal = coordenadasX.get(1);
                     int yFinal = coordenadasY.get(1);
+                    
+                    currentColor = graphics.getColor();
+                    graphics.setColor(Color.WHITE);
+                    graphics.fillOval(xInicial, yInicial, 5, 5);
+                    graphics.fillOval(xFinal, yFinal, 5, 5);
+                    graphics.setColor(currentColor);
+                    
                     cuadrado.drawCuadrado(graphics, xInicial, yInicial, xFinal, yFinal);
                     cuadrado.drawCuadrado(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
@@ -69,6 +90,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
            case "Triangulo":
                coordenadasX.add(mouseX);
                coordenadasY.add(mouseY);
+               graphics.fillOval(mouseX, mouseY, 5, 5);
                if (coordenadasX.size() == 3 && coordenadasY.size() == 3) {
                     Triangulo triangulo = new Triangulo();
 
@@ -78,6 +100,14 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     int y1 = coordenadasY.get(1);
                     int x2 = coordenadasX.get(2);
                     int y2 = coordenadasY.get(2);
+                    
+                    currentColor = graphics.getColor();
+                    graphics.setColor(Color.WHITE);
+                    graphics.fillOval(x0, y0, 5, 5);
+                    graphics.fillOval(x1, y1, 5, 5);
+                    graphics.fillOval(x2, y2, 5, 5);
+                    graphics.setColor(currentColor);
+                    
                     triangulo.drawTriangulo(graphics, x0, y0, x1, y1, x2, y2);
                     triangulo.drawTriangulo(imageGraphics, x0, y0, x1, y1, x2, y2);
                     coordenadasX.clear();
@@ -87,6 +117,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
            case "Circulo":
                coordenadasX.add(mouseX);
                coordenadasY.add(mouseY);
+               graphics.fillOval(mouseX, mouseY, 5, 5);
                if (coordenadasX.size() == 2 && coordenadasY.size() == 2) {
                     Circunferencia circulo = new Circunferencia();
                     int xCentro = coordenadasX.get(0);
@@ -94,6 +125,13 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     int xFinal = coordenadasX.get(1);
                     int yFinal = coordenadasY.get(1);
                     double radio = Math.hypot(xCentro - xFinal, yCentro - yFinal);
+                    
+                    currentColor = graphics.getColor();
+                    graphics.setColor(Color.WHITE);
+                    graphics.fillOval(xCentro, yCentro, 5, 5);
+                    graphics.fillOval(xFinal, yFinal, 5, 5);
+                    graphics.setColor(currentColor);
+                    
                     circulo.drawCirculo(graphics, xCentro, yCentro, (int) radio);
                     circulo.drawCirculo(imageGraphics, yCentro, yCentro, yFinal);
                     coordenadasX.clear();
@@ -101,26 +139,36 @@ public class Mouse implements MouseListener, MouseMotionListener{
                }
                break;
            case "Curva":
+               if (SwingUtilities.isLeftMouseButton(event)) {
                coordenadasX.add(mouseX);
                coordenadasY.add(mouseY);
+               graphics.fillOval(mouseX, mouseY, 5, 5);
+               }
                if (coordenadasX.size() >= 2 && coordenadasY.size() >= 2) {
-                   
-                   Point2D[] points = new Point2D[coordenadasX.size()];
-                   
-                   for (int i = 0; i < points.length; i++) {
-                       points[i] = new Point2D.Double(coordenadasX.get(i), coordenadasY.get(i));
-                   }
-                   
-                    Bezier curva = new Bezier();
                     
                     if (SwingUtilities.isRightMouseButton(event)) {
+                        
+                    Point2D[] points = new Point2D[coordenadasX.size()];
+                   
+                    for (int i = 0; i < points.length; i++) {
+                       points[i] = new Point2D.Double(coordenadasX.get(i), coordenadasY.get(i));
+                       
+                        currentColor = graphics.getColor();
+                        graphics.setColor(Color.WHITE);
+                        graphics.fillOval(coordenadasX.get(i), coordenadasY.get(i), 5, 5);
+                        graphics.setColor(currentColor); 
+                       
+                    }
+                        
+                        Bezier curva = new Bezier();
                          curva.drawBezier((Graphics2D) graphics, points);
                          curva.drawBezier((Graphics2D) imageGraphics, points);
                          coordenadasX.clear();
                          coordenadasY.clear();
                         System.out.println("Click derecho");
-                    }
+                    }                  
                }
+
                break;
            default:
                break;

@@ -1096,7 +1096,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_girarBtn1MouseExited
 
     private void girarBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn2MouseClicked
-        System.out.println("Girar");
+
     }//GEN-LAST:event_girarBtn2MouseClicked
 
     private void girarBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn2MouseEntered
