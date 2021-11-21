@@ -2,6 +2,7 @@ package demo;
 
 import java.awt.*;
 import desplazable.Desface;
+import java.awt.event.MouseListener;
 
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -24,7 +25,10 @@ public class Pantalla extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         image = new BufferedImage(Lienzo.getWidth(), this.Lienzo.getHeight(), BufferedImage.TYPE_INT_ARGB);
         imageGraphics = image.createGraphics();
-        
+        imageGraphics.setBackground(new java.awt.Color(255,255,255));
+        Mouse mouse = new Mouse();
+        Lienzo.addMouseListener(mouse);
+        System.out.println(mouse);
     }
 
     @SuppressWarnings("unchecked")
