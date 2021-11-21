@@ -44,7 +44,11 @@ public class Linea extends JPanel {
           x=x+Xinc;
           y=y+Yinc;
           i++;
+          
+          //float guiones[] = {5,5};
+          //g.setStroke(new BasicStroke(grosor, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 0,guiones,0));
           g.setStroke(new BasicStroke(grosor));
+          
           g.drawLine( Math.round(x),Math.round(y),Math.round(x), Math.round(y));
         }
     }
