@@ -12,16 +12,18 @@ public class Linea extends JPanel {
 
     private int x0, y0, x1, y1;
 
+    private int grosor = 10;
+    
     public void drawLinea(Graphics g, int xInicial,int yInicial,int xFinal,int yFinal) {
         x0 = xInicial;
         y0 = yInicial;
         x1 = xFinal;
         y1 = yFinal;
-        paint(g);
+        paint((Graphics2D) g);
     }
 
     
-    public void paint(Graphics g) {
+    public void paint(Graphics2D g) {
         super.paint(g);
         float Xinc,Yinc,x,y,delta;
        int i;
@@ -42,6 +44,7 @@ public class Linea extends JPanel {
           x=x+Xinc;
           y=y+Yinc;
           i++;
+          g.setStroke(new BasicStroke(grosor));
           g.drawLine( Math.round(x),Math.round(y),Math.round(x), Math.round(y));
         }
     }

@@ -17,6 +17,8 @@ public class Triangulo extends JPanel{
 
     private int x0, y0, x1, y1, x2, y2;
    
+    private int grosor = 10;
+    
     public void drawTriangulo(Graphics g, int x0, int y0, int x1, int y1, int x2, int y2) {
         this.x0 = x0;
         this.y0 = y0;
@@ -24,17 +26,17 @@ public class Triangulo extends JPanel{
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
-        paint(g);
+        paint((Graphics2D) g);
     }
     
-    public void paint(Graphics g) {
+    public void paint(Graphics2D g) {
     super.paint(g);
     dibujar(g,x0,x1,y0,y1);
     dibujar(g,x1,x2,y1,y2);
     dibujar(g,x0,x2,y0,y2);
     }
     
-    public void dibujar (Graphics g,int x0,int x1,int y0,int y1){
+    public void dibujar (Graphics2D g,int x0,int x1,int y0,int y1){
         float Xinc,Yinc,x,y,delta;
         int i;
        if(Math.abs(x1-x0)>=Math.abs(y1-y0)){
@@ -53,6 +55,7 @@ public class Triangulo extends JPanel{
           x=x+Xinc;
           y=y+Yinc;
           i++;
+          g.setStroke(new BasicStroke(grosor));
           g.drawLine(Math.round(x),Math.round(y),Math.round(x), Math.round(y));
         }
     }

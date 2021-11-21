@@ -9,20 +9,17 @@ public class Cuadrado extends JPanel {
 
     private int x0, y0, x1, y1;
    
+    private int grosor = 10;
+    
     public void drawCuadrado(Graphics g, int xInicial, int yInicial, int xFinal, int yFinal) {
         x0 = xInicial;
         y0 = yInicial;
         x1 = xFinal;
         y1 = yFinal;
-        paint(g);
+        paint((Graphics2D) g);
     }
-    /**public void drawFondo(Graphics g, JPanel panel){
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
-        paint(g);
-    }**/
     
-    public void paint(Graphics g) {
+    public void paint(Graphics2D g) {
     int xc0 = x0, yc0 = y0 ,xc1 = x1, yc1 = y1;
     super.paint(g);
     dibujar(g,xc0,xc0,yc0,yc1);
@@ -31,7 +28,7 @@ public class Cuadrado extends JPanel {
     dibujar(g,xc1,xc1,yc1,yc0);
     }
     
-    public void dibujar (Graphics g,int x0,int x1,int y0,int y1){
+    public void dibujar (Graphics2D g,int x0,int x1,int y0,int y1){
         float Xinc,Yinc,x,y,delta;
         int i;
        if(Math.abs(x1-x0)>=Math.abs(y1-y0)){
@@ -50,6 +47,7 @@ public class Cuadrado extends JPanel {
           x=x+Xinc;
           y=y+Yinc;
           i++;
+          g.setStroke(new BasicStroke(grosor));
           g.drawLine(Math.round(x),Math.round(y),Math.round(x), Math.round(y));
         }
     }
