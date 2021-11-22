@@ -54,11 +54,8 @@ public class Pantalla extends javax.swing.JFrame {
         amarilloBtn = new javax.swing.JPanel();
         violetaBtn = new javax.swing.JPanel();
         cafeBtn = new javax.swing.JPanel();
-        blancoBtn = new javax.swing.JPanel();
-        grisBtn = new javax.swing.JPanel();
         negrBtn2 = new javax.swing.JPanel();
         azulBtn = new javax.swing.JPanel();
-        verdeOsc = new javax.swing.JPanel();
         hsvBtn = new javax.swing.JButton();
         rgbBtn = new javax.swing.JButton();
         menuFigu1 = new javax.swing.JPanel();
@@ -286,7 +283,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGap(0, 16, Short.MAX_VALUE)
         );
 
-        menuColor.add(verdeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 20, 20));
+        menuColor.add(verdeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 20, 20));
 
         amarilloBtn.setBackground(new java.awt.Color(255, 235, 43));
         amarilloBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -328,7 +325,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGap(0, 16, Short.MAX_VALUE)
         );
 
-        menuColor.add(violetaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 20, 20));
+        menuColor.add(violetaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 20, 20));
 
         cafeBtn.setBackground(new java.awt.Color(102, 0, 0));
         cafeBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -349,49 +346,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGap(0, 16, Short.MAX_VALUE)
         );
 
-        menuColor.add(cafeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 20, 20));
-
-        blancoBtn.setBackground(new java.awt.Color(255, 255, 255));
-        blancoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        blancoBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                blancoBtnMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout blancoBtnLayout = new javax.swing.GroupLayout(blancoBtn);
-        blancoBtn.setLayout(blancoBtnLayout);
-        blancoBtnLayout.setHorizontalGroup(
-            blancoBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 18, Short.MAX_VALUE)
-        );
-        blancoBtnLayout.setVerticalGroup(
-            blancoBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 18, Short.MAX_VALUE)
-        );
-
-        menuColor.add(blancoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 20, 20));
-
-        grisBtn.setBackground(new java.awt.Color(153, 153, 153));
-        grisBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        grisBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                grisBtnMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout grisBtnLayout = new javax.swing.GroupLayout(grisBtn);
-        grisBtn.setLayout(grisBtnLayout);
-        grisBtnLayout.setHorizontalGroup(
-            grisBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 16, Short.MAX_VALUE)
-        );
-        grisBtnLayout.setVerticalGroup(
-            grisBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 16, Short.MAX_VALUE)
-        );
-
-        menuColor.add(grisBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 20, 20));
+        menuColor.add(cafeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 20, 20));
 
         negrBtn2.setBackground(new java.awt.Color(0, 0, 0));
         negrBtn2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -435,27 +390,6 @@ public class Pantalla extends javax.swing.JFrame {
 
         menuColor.add(azulBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 20, 20));
 
-        verdeOsc.setBackground(new java.awt.Color(0, 153, 51));
-        verdeOsc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        verdeOsc.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                verdeOscMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout verdeOscLayout = new javax.swing.GroupLayout(verdeOsc);
-        verdeOsc.setLayout(verdeOscLayout);
-        verdeOscLayout.setHorizontalGroup(
-            verdeOscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 16, Short.MAX_VALUE)
-        );
-        verdeOscLayout.setVerticalGroup(
-            verdeOscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 16, Short.MAX_VALUE)
-        );
-
-        menuColor.add(verdeOsc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 20, 20));
-
         hsvBtn.setBackground(new java.awt.Color(255, 255, 255));
         hsvBtn.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         hsvBtn.setText("HSV");
@@ -464,7 +398,7 @@ public class Pantalla extends javax.swing.JFrame {
                 hsvBtnMouseClicked(evt);
             }
         });
-        menuColor.add(hsvBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 55, 60, 30));
+        menuColor.add(hsvBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 55, 60, 30));
 
         rgbBtn.setBackground(new java.awt.Color(255, 255, 255));
         rgbBtn.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
@@ -474,9 +408,9 @@ public class Pantalla extends javax.swing.JFrame {
                 rgbBtnMouseClicked(evt);
             }
         });
-        menuColor.add(rgbBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 15, 60, 30));
+        menuColor.add(rgbBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 15, 60, 30));
 
-        Lienzo.add(menuColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 470, 200, 100));
+        Lienzo.add(menuColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 470, 170, 100));
 
         menuFigu1.setBackground(new java.awt.Color(255, 255, 255));
         menuFigu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(19, 129, 171), 3));
@@ -488,15 +422,15 @@ public class Pantalla extends javax.swing.JFrame {
                 cuadradoMouseClicked(evt);
             }
         });
-        menuFigu1.add(cuadrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 70));
+        menuFigu1.add(cuadrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 45, 70));
 
         jSeparator5.setBackground(new java.awt.Color(19, 129, 171));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        menuFigu1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 20, 70));
+        menuFigu1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 10, 70));
 
         jSeparator6.setBackground(new java.awt.Color(19, 129, 171));
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        menuFigu1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 20, 70));
+        menuFigu1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 20, 70));
 
         triangulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triangulo.JPG"))); // NOI18N
         triangulo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -504,7 +438,7 @@ public class Pantalla extends javax.swing.JFrame {
                 trianguloMouseClicked(evt);
             }
         });
-        menuFigu1.add(triangulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 50, 70));
+        menuFigu1.add(triangulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 0, 45, 70));
 
         circulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/circulo.JPG"))); // NOI18N
         circulo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -512,9 +446,9 @@ public class Pantalla extends javax.swing.JFrame {
                 circuloMouseClicked(evt);
             }
         });
-        menuFigu1.add(circulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 0, 50, 70));
+        menuFigu1.add(circulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 0, 45, 70));
 
-        Lienzo.add(menuFigu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 199, 180, 70));
+        Lienzo.add(menuFigu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 199, 156, 70));
 
         menuGrosor.setBackground(new java.awt.Color(255, 255, 255));
         menuGrosor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(19, 129, 171), 3));
@@ -595,7 +529,7 @@ public class Pantalla extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, -1, -1));
+        Lienzo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, -1, -1));
 
         jButton2.setText("Izquierda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -603,7 +537,7 @@ public class Pantalla extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, -1, -1));
+        Lienzo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, -1, -1));
 
         jButton3.setText("Derecha");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -611,7 +545,7 @@ public class Pantalla extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, -1, -1));
+        Lienzo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, -1, -1));
 
         jButton4.setText("Abajo");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -619,7 +553,7 @@ public class Pantalla extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 540, -1, -1));
+        Lienzo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 540, -1, -1));
 
         getContentPane().add(Lienzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 770, 570));
 
@@ -1091,25 +1025,10 @@ public class Pantalla extends javax.swing.JFrame {
         
     }//GEN-LAST:event_amarilloBtnMouseClicked
 
-    private void violetaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_violetaBtnMouseClicked
-        color = new Color(153,0,153);
-        desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 5, 1);
-    }//GEN-LAST:event_violetaBtnMouseClicked
-
     private void cafeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cafeBtnMouseClicked
         color = new Color(102,0,0);
         desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 5, 1);
     }//GEN-LAST:event_cafeBtnMouseClicked
-
-    private void blancoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blancoBtnMouseClicked
-        color = new Color(255,255,255);
-        desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 5, 1);
-    }//GEN-LAST:event_blancoBtnMouseClicked
-
-    private void grisBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grisBtnMouseClicked
-        color = new Color(153,153,153);
-        desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 5, 1);
-    }//GEN-LAST:event_grisBtnMouseClicked
 
     private void negrBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_negrBtn2MouseClicked
         color = new Color(0,0,0);
@@ -1120,11 +1039,6 @@ public class Pantalla extends javax.swing.JFrame {
         color = new Color(0,0,255);
         desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 5, 1);
     }//GEN-LAST:event_azulBtnMouseClicked
-
-    private void verdeOscMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verdeOscMouseClicked
-        color = new Color(0,153,51);
-        desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 5, 1);
-    }//GEN-LAST:event_verdeOscMouseClicked
 
     private void segmentadoBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentadoBtn1MouseClicked
         segmentado = true;
@@ -1732,6 +1646,11 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void violetaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_violetaBtnMouseClicked
+        color = new Color(153,0,153);
+        desplace.desplazarIzquierda(menuColor, menuColor.getX(), -200, 5, 1);
+    }//GEN-LAST:event_violetaBtnMouseClicked
+
     private void verificarColor(){
         Color aux = paletaRGB.getColor();
         Color aux2 = paletaHSV.getColor();
@@ -1786,7 +1705,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel Lienzo;
     private javax.swing.JPanel amarilloBtn;
     private javax.swing.JPanel azulBtn;
-    private javax.swing.JPanel blancoBtn;
     private javax.swing.JPanel cabezera;
     private javax.swing.JPanel cafeBtn;
     private javax.swing.JPanel celesteBtn;
@@ -1799,7 +1717,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel girarBtn1;
     private javax.swing.JPanel girarBtn2;
     private javax.swing.JLabel grandeBtn;
-    private javax.swing.JPanel grisBtn;
     private javax.swing.JLabel grosor1;
     private javax.swing.JLabel grosor2;
     private javax.swing.JLabel grosor3;
@@ -1855,7 +1772,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel tamanioBtn;
     private javax.swing.JLabel triangulo;
     private javax.swing.JPanel verdeBtn;
-    private javax.swing.JPanel verdeOsc;
     private javax.swing.JPanel violetaBtn;
     // End of variables declaration//GEN-END:variables
 }
