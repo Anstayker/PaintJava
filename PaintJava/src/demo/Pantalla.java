@@ -1141,7 +1141,8 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void girarBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn1MouseClicked
         Graphics g = Lienzo.getGraphics();
-        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());       
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        imageGraphics.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
             int puntoMedioX = (linea.getX1() + linea.getX0())/2;
             int puntoMedioY = (linea.getY1()+linea.getY0())/2;
@@ -1156,12 +1157,13 @@ public class Pantalla extends javax.swing.JFrame {
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
             l.drawLinea(g, (int) newX0, (int) newY0, (int)newX1, (int)newY1);
+            l.drawLinea(imageGraphics, (int) newX0, (int) newY0, (int)newX1, (int)newY1);
             linea.setX0((int) newX0);
             linea.setY0((int) newY0);
             linea.setX1((int) newX1);
             linea.setY1((int) newY1);
             
-            System.out.println("Punto a: " + linea.getX0()+ " , " + linea.getY0() + "Punto b: " +linea.getX1()+ " , " +linea.getY1());
+            //System.out.println("Punto a: " + linea.getX0()+ " , " + linea.getY0() + "Punto b: " +linea.getX1()+ " , " +linea.getY1());
         }
         for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
             int x2 = cuadrado.getX1();
@@ -1185,6 +1187,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(cuadrado.grosor);
             c.setSegmentar(cuadrado.segmentado);
             c.drawCuadrado(g, (int)newX0, (int)newY0, (int)newX2, (int)newY2, (int)newX1, (int)newY1, (int)newX3, (int)newY3);
+            c.drawCuadrado(imageGraphics, (int)newX0, (int)newY0, (int)newX2, (int)newY2, (int)newX1, (int)newY1, (int)newX3, (int)newY3);
             
             cuadrado.setX0((int)newX0);
             cuadrado.setY0((int)newY0);
@@ -1218,26 +1221,29 @@ public class Pantalla extends javax.swing.JFrame {
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);
             t.drawTriangulo(g, (int) newXSuperior, (int) newYSuperior, (int) newXIzquierdo, (int) newYIzquierdo, (int) newXDerecho, (int) newYDerecho);
+            t.drawTriangulo(imageGraphics,(int) newXSuperior, (int) newYSuperior, (int) newXIzquierdo, (int) newYIzquierdo, (int) newXDerecho, (int) newYDerecho);
             triangulo.setVerticeSuperiorX((int)newXSuperior);
             triangulo.setVerticeSuperiorY((int) newYSuperior);
             triangulo.setVerticeIzquierdoX((int) newXIzquierdo);
             triangulo.setVerticeIzquierdoY((int) newYIzquierdo);
             triangulo.setVerticeDerechoX((int) newXDerecho);
             triangulo.setVerticeDerechoY((int) newYDerecho);
-            System.out.println(newXSuperior +  " , " + newYSuperior + "");
-            System.out.println(ptMedioTrX + " , " + ptMedioTrY);
+            //System.out.println(newXSuperior +  " , " + newYSuperior + "");
+            //System.out.println(ptMedioTrX + " , " + ptMedioTrY);
         }
         for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
             Circunferencia cir = new Circunferencia();
             cir.setGrosor(circulo.grosor);
             cir.setSegmentar(circulo.segmentado);
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio());
+            cir.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC(), circulo.getRadio());            
         }
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
             Bezier bezier = new Bezier();
             bezier.setGrosor(curva.grosor);
             bezier.setSegmentar(curva.segmentado);
             bezier.drawBezier((Graphics2D) g, curva.getPuntos());
+            bezier.drawBezier((Graphics2D) imageGraphics, curva.getPuntos());
         }
         
     }//GEN-LAST:event_girarBtn1MouseClicked
@@ -1273,11 +1279,13 @@ public class Pantalla extends javax.swing.JFrame {
     private void grandeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grandeBtnMouseClicked
         Graphics g = Lienzo.getGraphics();
         g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        imageGraphics.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
             Linea l = new Linea ();  
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
-            l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()+30, linea.getY1()+30);            
+            l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()+30, linea.getY1()+30);
+            l.drawLinea(imageGraphics, linea.getX0(), linea.getY0(), linea.getX1()+30, linea.getY1()+30);   
             linea.setX0(linea.getX0());
             linea.setX1(linea.getX1()+30);
             linea.setY0(linea.getY0());
@@ -1288,7 +1296,8 @@ public class Pantalla extends javax.swing.JFrame {
             if(cuadrado.getX0()< cuadrado.getX1()){
                 c.setGrosor(cuadrado.grosor);
                 c.setSegmentar(cuadrado.segmentado);                
-                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);            
+                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);
+                c.drawCuadrado(imageGraphics, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);   
                 cuadrado.setX0(cuadrado.getX0()-20);
                 cuadrado.setX1(cuadrado.getX1()+20);
                 cuadrado.setY0(cuadrado.getY0()-20);
@@ -1296,7 +1305,8 @@ public class Pantalla extends javax.swing.JFrame {
             }else{
                 c.setGrosor(cuadrado.grosor);
                 c.setSegmentar(cuadrado.segmentado);                
-                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);            
+                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);
+                c.drawCuadrado(imageGraphics, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);   
                 cuadrado.setX0(cuadrado.getX0()+20);
                 cuadrado.setX1(cuadrado.getX1()-20);
                 cuadrado.setY0(cuadrado.getY0()-20);
@@ -1314,6 +1324,7 @@ public class Pantalla extends javax.swing.JFrame {
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);
             t.drawTriangulo(g, xSuperior, ySuperior - 30, xDerecho + 30, yDerecho, xIzquierdo - 30, yIzquierdo);
+            t.drawTriangulo(imageGraphics, xSuperior, ySuperior - 30, xDerecho + 30, yDerecho, xIzquierdo - 30, yIzquierdo);
             triangulo.setVerticeSuperiorY(ySuperior - 30);
             triangulo.setVerticeDerechoX(xDerecho + 30);
             triangulo.setVerticeIzquierdoX(xIzquierdo -30);
@@ -1323,6 +1334,7 @@ public class Pantalla extends javax.swing.JFrame {
             cir.setGrosor(circulo.grosor);
             cir.setSegmentar(circulo.segmentado);
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);
+            cir.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);            
             circulo.setRadio(circulo.getRadio()+30);
         }
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
@@ -1330,6 +1342,7 @@ public class Pantalla extends javax.swing.JFrame {
             bezier.setGrosor(curva.grosor);
             bezier.setSegmentar(curva.segmentado);            
             bezier.drawBezier((Graphics2D) g, curva.getPuntos());
+            bezier.drawBezier((Graphics2D) imageGraphics, curva.getPuntos());            
         }
         
         desplace.desplazarIzquierda(menuTam, menuTam.getX(), -90, 10, 1);
@@ -1338,11 +1351,13 @@ public class Pantalla extends javax.swing.JFrame {
     private void pequenioBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pequenioBtnMouseClicked
         Graphics g = Lienzo.getGraphics();
         g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        imageGraphics.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
-            l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()-30, linea.getY1()-30);            
+            l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()-30, linea.getY1()-30);
+            l.drawLinea(imageGraphics, linea.getX0(), linea.getY0(), linea.getX1()-30, linea.getY1()-30);               
             linea.setX0(linea.getX0());
             linea.setX1(linea.getX1()-30);
             linea.setY0(linea.getY0());
@@ -1353,7 +1368,8 @@ public class Pantalla extends javax.swing.JFrame {
             if(cuadrado.getX0()< cuadrado.getX1()){
                 c.setGrosor(cuadrado.grosor);
                 c.setSegmentar(cuadrado.segmentado);                
-                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()+20, cuadrado.getX1()-20, cuadrado.getY1()-20);            
+                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()+20, cuadrado.getX1()-20, cuadrado.getY1()-20);
+                c.drawCuadrado(imageGraphics, cuadrado.getX0()+20, cuadrado.getY0()+20, cuadrado.getX1()-20, cuadrado.getY1()-20);                 
                 cuadrado.setX0(cuadrado.getX0()+20);
                 cuadrado.setX1(cuadrado.getX1()-20);
                 cuadrado.setY0(cuadrado.getY0()+20);
@@ -1361,7 +1377,8 @@ public class Pantalla extends javax.swing.JFrame {
             }else{
                 c.setGrosor(cuadrado.grosor);
                 c.setSegmentar(cuadrado.segmentado);                
-                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()+20, cuadrado.getX1()+20, cuadrado.getY1()-20);            
+                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()+20, cuadrado.getX1()+20, cuadrado.getY1()-20);
+                c.drawCuadrado(imageGraphics, cuadrado.getX0()-20, cuadrado.getY0()+20, cuadrado.getX1()+20, cuadrado.getY1()-20);                      
                 cuadrado.setX0(cuadrado.getX0()-20);
                 cuadrado.setX1(cuadrado.getX1()+20);
                 cuadrado.setY0(cuadrado.getY0()+20);
@@ -1379,6 +1396,7 @@ public class Pantalla extends javax.swing.JFrame {
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);            
             t.drawTriangulo(g, xSuperior, ySuperior + 30, xDerecho - 30, yDerecho, xIzquierdo + 30, yIzquierdo);
+            t.drawTriangulo(imageGraphics, xSuperior, ySuperior + 30, xDerecho - 30, yDerecho, xIzquierdo + 30, yIzquierdo);            
             triangulo.setVerticeSuperiorY(ySuperior + 30);
             triangulo.setVerticeDerechoX(xDerecho - 30);
             triangulo.setVerticeIzquierdoX(xIzquierdo + 30);
@@ -1386,8 +1404,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
             Circunferencia cir = new Circunferencia();
             cir.setGrosor(circulo.grosor);
-            cir.setSegmentar(circulo.segmentado);            
+            cir.setSegmentar(circulo.segmentado);
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()-30);
+            cir.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC(), circulo.getRadio()-30);            
             circulo.setRadio(circulo.getRadio()-30);
         }
 
@@ -1396,6 +1415,7 @@ public class Pantalla extends javax.swing.JFrame {
             bezier.setGrosor(curva.grosor);
             bezier.setSegmentar(curva.segmentado);            
             bezier.drawBezier((Graphics2D) g, curva.getPuntos());
+            bezier.drawBezier((Graphics2D) imageGraphics, curva.getPuntos());            
         }
         
         desplace.desplazarIzquierda(menuTam, menuTam.getX(), -90, 10, 1);
@@ -1435,11 +1455,13 @@ public class Pantalla extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Graphics g = Lienzo.getGraphics();
         g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        imageGraphics.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
-            l.drawLinea(g, linea.getX0(), linea.getY0() -5, linea.getX1(), linea.getY1() -5);            
+            l.drawLinea(g, linea.getX0(), linea.getY0() -5, linea.getX1(), linea.getY1() -5);
+            l.drawLinea(imageGraphics, linea.getX0(), linea.getY0() -5, linea.getX1(), linea.getY1() -5);
             linea.setY0(linea.getY0()-5);
             linea.setY1(linea.getY1()-5);            
         }
@@ -1448,6 +1470,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(cuadrado.grosor);
             c.setSegmentar(cuadrado.segmentado);            
             c.drawCuadrado(g, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
+            c.drawCuadrado(imageGraphics, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
             cuadrado.setY0(cuadrado.getY0()-5);
             cuadrado.setY1(cuadrado.getY1()-5);
         }
@@ -1456,6 +1479,7 @@ public class Pantalla extends javax.swing.JFrame {
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);
             t.drawTriangulo(g, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
+            t.drawTriangulo(imageGraphics, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
             triangulo.setY1(triangulo.getY1()-5);
             triangulo.setY2(triangulo.getY2()-5);
             triangulo.setY3(triangulo.getY3()-5);
@@ -1465,6 +1489,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(circulo.grosor);
             c.setSegmentar(circulo.segmentado);            
             c.drawCirculo(g, circulo.getxC(), circulo.getyC()-5, circulo.getRadio());
+            c.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC()-5, circulo.getRadio());
             circulo.setyC(circulo.getyC()-5);            
         }
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
@@ -1473,6 +1498,7 @@ public class Pantalla extends javax.swing.JFrame {
             b.setGrosor(curva.grosor);
             b.setSegmentar(curva.segmentado);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaArriba());
+            b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaArriba());
             curva.moverPtsCurvaArriba();
         }
         
@@ -1482,11 +1508,13 @@ public class Pantalla extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Graphics g = Lienzo.getGraphics();
         g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        imageGraphics.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
-            l.drawLinea(g, linea.getX0()-5, linea.getY0(), linea.getX1()-5, linea.getY1());            
+            l.drawLinea(g, linea.getX0()-5, linea.getY0(), linea.getX1()-5, linea.getY1());
+            l.drawLinea(imageGraphics, linea.getX0()-5, linea.getY0(), linea.getX1()-5, linea.getY1());
             linea.setX0(linea.getX0()-5);
             linea.setX1(linea.getX1()-5);            
         }
@@ -1495,6 +1523,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(cuadrado.grosor);
             c.setSegmentar(cuadrado.segmentado);            
             c.drawCuadrado(g, cuadrado.getX0()-5, cuadrado.getY0(), cuadrado.getX1()-5, cuadrado.getY1());
+            c.drawCuadrado(imageGraphics, cuadrado.getX0()-5, cuadrado.getY0(), cuadrado.getX1()-5, cuadrado.getY1());
             cuadrado.setX0(cuadrado.getX0()-5);
             cuadrado.setX1(cuadrado.getX1()-5);
         }
@@ -1503,6 +1532,7 @@ public class Pantalla extends javax.swing.JFrame {
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);            
             t.drawTriangulo(g, triangulo.getX1()-5, triangulo.getY1(), triangulo.getX2()-5, triangulo.getY2(),triangulo.getX3()-5, triangulo.getY3());
+            t.drawTriangulo(imageGraphics, triangulo.getX1()-5, triangulo.getY1(), triangulo.getX2()-5, triangulo.getY2(),triangulo.getX3()-5, triangulo.getY3());
             triangulo.setX1(triangulo.getX1()-5);
             triangulo.setX2(triangulo.getX2()-5);
             triangulo.setX3(triangulo.getX3()-5);
@@ -1512,6 +1542,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(circulo.grosor);
             c.setSegmentar(circulo.segmentado);
             c.drawCirculo(g, circulo.getxC()-5, circulo.getyC(), circulo.getRadio());
+            c.drawCirculo(imageGraphics, circulo.getxC()-5, circulo.getyC(), circulo.getRadio());
             circulo.setxC(circulo.getxC()-5);            
         }
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
@@ -1520,6 +1551,7 @@ public class Pantalla extends javax.swing.JFrame {
             b.setGrosor(curva.grosor);
             b.setSegmentar(curva.segmentado);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaIzquierda());
+            b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaIzquierda());
             curva.moverPtsCurvaIzquierda();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1527,11 +1559,13 @@ public class Pantalla extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Graphics g = Lienzo.getGraphics();
         g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        imageGraphics.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
-            l.drawLinea(g, linea.getX0(), linea.getY0() +5, linea.getX1(), linea.getY1() +5);            
+            l.drawLinea(g, linea.getX0(), linea.getY0() +5, linea.getX1(), linea.getY1() +5);
+            l.drawLinea(imageGraphics, linea.getX0(), linea.getY0() +5, linea.getX1(), linea.getY1() +5);
             linea.setY0(linea.getY0()+5);
             linea.setY1(linea.getY1()+5);            
         }
@@ -1540,6 +1574,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(cuadrado.grosor);
             c.setSegmentar(cuadrado.segmentado);            
             c.drawCuadrado(g, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
+            c.drawCuadrado(imageGraphics, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
             cuadrado.setY0(cuadrado.getY0()+5);
             cuadrado.setY1(cuadrado.getY1()+5);
         }
@@ -1548,6 +1583,7 @@ public class Pantalla extends javax.swing.JFrame {
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);            
             t.drawTriangulo(g, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
+            t.drawTriangulo(imageGraphics, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
             triangulo.setY1(triangulo.getY1()+5);
             triangulo.setY2(triangulo.getY2()+5);
             triangulo.setY3(triangulo.getY3()+5);
@@ -1557,6 +1593,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(circulo.grosor);
             c.setSegmentar(circulo.segmentado);
             c.drawCirculo(g, circulo.getxC(), circulo.getyC()+5, circulo.getRadio());
+            c.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC()+5, circulo.getRadio());
             circulo.setyC(circulo.getyC()+5);            
         }
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
@@ -1565,6 +1602,7 @@ public class Pantalla extends javax.swing.JFrame {
             b.setGrosor(curva.grosor);
             b.setSegmentar(curva.segmentado);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaAbajo());
+            b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaAbajo());
             curva.moverPtsCurvaAbajo();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1572,11 +1610,13 @@ public class Pantalla extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Graphics g = Lienzo.getGraphics();
         g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        imageGraphics.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
-            l.drawLinea(g, linea.getX0()+5, linea.getY0(), linea.getX1()+5, linea.getY1());            
+            l.drawLinea(g, linea.getX0()+5, linea.getY0(), linea.getX1()+5, linea.getY1());
+            l.drawLinea(imageGraphics, linea.getX0()+5, linea.getY0(), linea.getX1()+5, linea.getY1());
             linea.setX0(linea.getX0()+5);
             linea.setX1(linea.getX1()+5);            
         }
@@ -1585,6 +1625,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(cuadrado.grosor);
             c.setSegmentar(cuadrado.segmentado);            
             c.drawCuadrado(g, cuadrado.getX0()+5, cuadrado.getY0(), cuadrado.getX1()+5, cuadrado.getY1());
+            c.drawCuadrado(imageGraphics, cuadrado.getX0()+5, cuadrado.getY0(), cuadrado.getX1()+5, cuadrado.getY1());
             cuadrado.setX0(cuadrado.getX0()+5);
             cuadrado.setX1(cuadrado.getX1()+5);
         }
@@ -1593,6 +1634,7 @@ public class Pantalla extends javax.swing.JFrame {
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);            
             t.drawTriangulo(g, triangulo.getX1()+5, triangulo.getY1(), triangulo.getX2()+5, triangulo.getY2(),triangulo.getX3()+5, triangulo.getY3());
+            t.drawTriangulo(imageGraphics, triangulo.getX1()+5, triangulo.getY1(), triangulo.getX2()+5, triangulo.getY2(),triangulo.getX3()+5, triangulo.getY3());
             triangulo.setX1(triangulo.getX1()+5);
             triangulo.setX2(triangulo.getX2()+5);
             triangulo.setX3(triangulo.getX3()+5);
@@ -1602,6 +1644,7 @@ public class Pantalla extends javax.swing.JFrame {
             c.setGrosor(circulo.grosor);
             c.setSegmentar(circulo.segmentado);
             c.drawCirculo(g, circulo.getxC()+5, circulo.getyC(), circulo.getRadio());
+            c.drawCirculo(imageGraphics, circulo.getxC()+5, circulo.getyC(), circulo.getRadio());
             circulo.setxC(circulo.getxC()+5);            
         }
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
@@ -1610,6 +1653,7 @@ public class Pantalla extends javax.swing.JFrame {
             b.setGrosor(curva.grosor);
             b.setSegmentar(curva.segmentado);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaDerecha());
+            b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaDerecha());
             curva.moverPtsCurvaDerecha();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
