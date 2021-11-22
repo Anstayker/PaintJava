@@ -1166,25 +1166,22 @@ public class Pantalla extends javax.swing.JFrame {
             int y2 = cuadrado.getY0();
             int x3 = cuadrado.getX0();
             int y3 = cuadrado.getY1();
+            
             int xPuntoMedio = (cuadrado.getX0()+cuadrado.getX1())/2;
             int yPuntoMedio = (cuadrado.getY0()+cuadrado.getY1())/2;
             
-            double newX0 = xPuntoMedio + (cuadrado.getX0()-xPuntoMedio)*Math.cos(10) - (cuadrado.getX0()-xPuntoMedio)*Math.sin(10);
-            double newY0 = yPuntoMedio + (cuadrado.getY0()-yPuntoMedio)*Math.sin(10) + (cuadrado.getY0()-yPuntoMedio)*Math.cos(10);
-            double newX1 = xPuntoMedio + (cuadrado.getX1()-xPuntoMedio)*Math.cos(10) - (cuadrado.getX1()-xPuntoMedio)*Math.sin(10);
-            double newY1 = yPuntoMedio + (cuadrado.getY1()-yPuntoMedio)*Math.sin(10) + (cuadrado.getY1()-yPuntoMedio)*Math.cos(10);
-            double newX2 = xPuntoMedio + (x2-xPuntoMedio)*Math.cos(10) - (x2-xPuntoMedio)*Math.sin(10);
-            double newY2 = yPuntoMedio + (y2-yPuntoMedio)*Math.sin(10) + (y2-yPuntoMedio)*Math.cos(10);
-            double newX3 = xPuntoMedio + (x3-xPuntoMedio)*Math.cos(10) - (x3-xPuntoMedio)*Math.sin(10);
-            double newY3 = yPuntoMedio + (y3-yPuntoMedio)*Math.sin(10) + (y3-yPuntoMedio)*Math.cos(10);
+            double newX0 = xPuntoMedio + (cuadrado.getX0()-xPuntoMedio)*Math.cos(10) - (cuadrado.getY0()-yPuntoMedio)*Math.sin(10);
+            double newY0 = yPuntoMedio + (cuadrado.getX0()-xPuntoMedio)*Math.sin(10) + (cuadrado.getY0()-yPuntoMedio)*Math.cos(10);            
+            double newX1 = xPuntoMedio + (cuadrado.getX1()-xPuntoMedio)*Math.cos(10) - (cuadrado.getY1()-yPuntoMedio)*Math.sin(10);
+            double newY1 = yPuntoMedio + (cuadrado.getX1()-xPuntoMedio)*Math.sin(10) + (cuadrado.getY1()-yPuntoMedio)*Math.cos(10);
+            double newX2 = xPuntoMedio + (x2-xPuntoMedio)*Math.cos(10) - (y2-yPuntoMedio)*Math.sin(10);
+            double newY2 = yPuntoMedio + (x3-xPuntoMedio)*Math.sin(10) + (y3-yPuntoMedio)*Math.cos(10);
+            double newX3 = xPuntoMedio + (x3-xPuntoMedio)*Math.cos(10) - (y3-yPuntoMedio)*Math.sin(10);
+            double newY3 = yPuntoMedio + (x2-xPuntoMedio)*Math.sin(10) + (y2-yPuntoMedio)*Math.cos(10);
             
-            Cuadrado c = new Cuadrado();
-            System.out.println(xPuntoMedio + " , " + yPuntoMedio);
-            System.out.println(newX0  +" , "+ newY0);
-            System.out.println(newX1  +" , "+ newY1);
-            System.out.println(newX2  +" , "+ newY2);
-            System.out.println(newX3  +" , "+ newY3);
+            Cuadrado c = new Cuadrado();            
             c.drawCuadrado(g, (int)newX0, (int)newY0, (int)newX2, (int)newY2, (int)newX1, (int)newY1, (int)newX3, (int)newY3);
+            
             cuadrado.setX0((int)newX0);
             cuadrado.setY0((int)newY0);
             cuadrado.setX1((int)newX1);
@@ -1193,11 +1190,7 @@ public class Pantalla extends javax.swing.JFrame {
             cuadrado.setY2((int)newY2);
             cuadrado.setX3((int)newX3);
             cuadrado.setY3((int)newY3);
-            System.out.println(xPuntoMedio + " , " + yPuntoMedio);
-            System.out.println(newX0  +" , "+ newY0);
-            System.out.println(newX1  +" , "+ newY1);
-            System.out.println(newX2  +" , "+ newY2);
-            System.out.println(newX3  +" , "+ newY3);
+            
         }
         for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
             int xSuperior = triangulo.getvSX();
@@ -1230,11 +1223,10 @@ public class Pantalla extends javax.swing.JFrame {
         }
         for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
             Circunferencia cir = new Circunferencia();
-            cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);
-            circulo.setRadio(circulo.getRadio()+30);
+            cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio());
+            //circulo.setRadio(circulo.getRadio()+30);
         }
         
-        System.out.println("Girar");
     }//GEN-LAST:event_girarBtn1MouseClicked
 
     private void girarBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn1MouseEntered

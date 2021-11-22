@@ -24,14 +24,14 @@ public class Cuadrado extends JPanel {
         
     }
     public void drawCuadrado(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
-        x0 = x1;
-        y0 = y1;
-        x1 = x2;
-        y1 = y2;
-        x2 = x3;
-        y2 = y3;
-        x3 = x4;
-        y3 = y4;
+        this.x0 = x1;
+        this.y0 = y1;
+        this.x1 = x2;
+        this.y1 = y2;
+        this.x2 = x3;
+        this.y2 = y3;
+        this.x3 = x4;
+        this.y3 = y4;
         cuatroPuntosUsados = true;
         paint((Graphics2D) g);
     }
