@@ -45,20 +45,22 @@ public class Linea extends JPanel {
        int contadorDeSegmento = 0;
        
        while(i<=delta){
-          //setPixel(roundf(x),roundf(y));
           x=x+Xinc;
           y=y+Yinc;
           i++;
           
-          if(contadorDeSegmento > 4) {
-              dibujarSegmento = false;
+          if (segmentar) {
+            if(contadorDeSegmento > 4) {
+                dibujarSegmento = false;
+            }
+
+            if(contadorDeSegmento >= 12) {
+                dibujarSegmento = true;
+                contadorDeSegmento = 0;
+            }
+              contadorDeSegmento++;      
           }
-        
-          if(contadorDeSegmento >= 12) {
-              dibujarSegmento = true;
-              contadorDeSegmento = 0;
-          }
-            contadorDeSegmento++;
+
           
           if (dibujarSegmento) {
              g.drawLine( Math.round(x),Math.round(y),Math.round(x), Math.round(y));
@@ -84,6 +86,14 @@ public class Linea extends JPanel {
         y1 = yFinal;
     }
 
+    public void setGrosor(int grosor) {
+        this.grosor = grosor;
+    }
+    
+    public void setSegmentar(boolean segmentar) {
+        this.segmentar = segmentar;
+    }
+    
     public static void main(String[] args) {
         Linea l1 = new Linea();
         Scanner s = new Scanner(System.in);

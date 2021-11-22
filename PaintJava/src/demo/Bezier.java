@@ -9,7 +9,8 @@ import java.awt.geom.Rectangle2D;
 
 public class Bezier extends JPanel {
     
-    private static int grosor = 10;
+    private static int grosor = 1;
+    private static boolean segmentar = false;
     
     public double drawBezier(Graphics2D g2, Point2D p0, Point2D p1, Point2D p2, Point2D p3) {
         GeneralPath path = new GeneralPath();
@@ -129,7 +130,10 @@ public class Bezier extends JPanel {
         if (fillFlag) {
             g2.fill(path);
         } else {
-            g2.setStroke(new BasicStroke(grosor));
+            if (segmentar) 
+                g2.setStroke(new BasicStroke(grosor, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL,0, new float[]{9}, 0));
+            else
+                g2.setStroke(new BasicStroke(grosor));
             g2.draw(path);
         }
         return result;
@@ -218,6 +222,14 @@ public class Bezier extends JPanel {
 
     public static Point2D center(Rectangle2D r) {
         return new Point2D.Double(r.getCenterX(), r.getCenterY());
+    }
+ 
+    public void setGrosor(int grosor) {
+        this.grosor = grosor;
+    }
+    
+    public void setSegmentar(boolean segmentar) {
+        this.segmentar = segmentar;
     }
     
 }

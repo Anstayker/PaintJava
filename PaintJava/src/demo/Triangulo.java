@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demo;
 
 import java.awt.*;
 import java.util.Scanner;
 import javax.swing.*;
 
-/**
- *
- * @author Alan
- */
 public class Triangulo extends JPanel{
 
     private int x0, y0, x1, y1, x2, y2;
    
-    private int grosor = 10;
+    private int grosor = 1;
+    private boolean segmentar = false;
     
     public void drawTriangulo(Graphics g, int x0, int y0, int x1, int y1, int x2, int y2) {
         this.x0 = x0;
@@ -51,12 +43,31 @@ public class Triangulo extends JPanel{
        y=(float)y0;
 
        i=0;
+       
+       boolean dibujarSegmento = true;
+       int contadorDeSegmento = 0;
+       g.setStroke(new BasicStroke(grosor));
+       
        while(i<=delta){
           x=x+Xinc;
           y=y+Yinc;
           i++;
-          g.setStroke(new BasicStroke(grosor));
-          g.drawLine(Math.round(x),Math.round(y),Math.round(x), Math.round(y));
+          
+          if (segmentar) {
+            if(contadorDeSegmento > 4) {
+                dibujarSegmento = false;
+            }
+
+            if(contadorDeSegmento >= 12) {
+                dibujarSegmento = true;
+                contadorDeSegmento = 0;
+            }
+              contadorDeSegmento++;      
+          }
+          
+           if (dibujarSegmento) {
+              g.drawLine(Math.round(x),Math.round(y),Math.round(x), Math.round(y));           
+           }
         }
     }
 
@@ -84,6 +95,14 @@ public class Triangulo extends JPanel{
         y2 = y3;
     }
 
+    public void setGrosor(int grosor) {
+        this.grosor = grosor;
+    }    
+    
+    public void setSegmentar(boolean segmentar) {
+        this.segmentar = segmentar;
+    }
+    
     public static void main(String[] args) {
         Triangulo t1 = new Triangulo();
         Scanner s = new Scanner(System.in);

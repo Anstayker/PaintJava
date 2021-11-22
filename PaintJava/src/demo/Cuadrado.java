@@ -9,7 +9,8 @@ public class Cuadrado extends JPanel {
 
     private int x0, y0, x1, y1;
    
-    private int grosor = 10;
+    private int grosor = 1;
+    private boolean segmentar = false;
     
     public void drawCuadrado(Graphics g, int xInicial, int yInicial, int xFinal, int yFinal) {
         x0 = xInicial;
@@ -43,12 +44,31 @@ public class Cuadrado extends JPanel {
        y=(float)y0;
 
        i=0;
+       
+       g.setStroke(new BasicStroke(grosor));
+       boolean dibujarSegmento = true;
+       int contadorDeSegmento = 0;
+       
        while(i<=delta){
           x=x+Xinc;
           y=y+Yinc;
           i++;
-          g.setStroke(new BasicStroke(grosor));
-          g.drawLine(Math.round(x),Math.round(y),Math.round(x), Math.round(y));
+
+          if (segmentar) {
+            if(contadorDeSegmento > 4) {
+                dibujarSegmento = false;
+            }
+
+            if(contadorDeSegmento >= 12) {
+                dibujarSegmento = true;
+                contadorDeSegmento = 0;
+            }
+              contadorDeSegmento++;      
+          }
+          
+           if (dibujarSegmento) {
+                g.drawLine(Math.round(x),Math.round(y),Math.round(x), Math.round(y));               
+           }
         }
     }
 
@@ -68,6 +88,14 @@ public class Cuadrado extends JPanel {
         y1 = yFinal;
     }
 
+    public void setGrosor(int grosor) {
+        this.grosor = grosor;
+    }
+    
+    public void setSegmentar(boolean segmentar) {
+        this.segmentar = segmentar;
+    }
+    
     public static void main(String[] args) {
         Cuadrado c1 = new Cuadrado();
         Scanner s = new Scanner(System.in);
