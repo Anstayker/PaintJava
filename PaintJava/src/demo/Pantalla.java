@@ -1224,7 +1224,10 @@ public class Pantalla extends javax.swing.JFrame {
         for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
             Circunferencia cir = new Circunferencia();
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio());
-            //circulo.setRadio(circulo.getRadio()+30);
+        }
+        for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
+            Bezier bezier = new Bezier();
+            bezier.drawBezier((Graphics2D) g, curva.getPuntos());
         }
         
     }//GEN-LAST:event_girarBtn1MouseClicked
@@ -1302,7 +1305,10 @@ public class Pantalla extends javax.swing.JFrame {
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);
             circulo.setRadio(circulo.getRadio()+30);
         }
-        
+        for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
+            Bezier bezier = new Bezier();
+            bezier.drawBezier((Graphics2D) g, curva.getPuntos());
+        }
         
         desplace.desplazarIzquierda(menuTam, menuTam.getX(), -90, 10, 1);
     }//GEN-LAST:event_grandeBtnMouseClicked
@@ -1352,7 +1358,12 @@ public class Pantalla extends javax.swing.JFrame {
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()-30);
             circulo.setRadio(circulo.getRadio()-30);
         }
-        System.out.println("decrece");
+
+        for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
+            Bezier bezier = new Bezier();
+            bezier.drawBezier((Graphics2D) g, curva.getPuntos());
+        }
+        
         desplace.desplazarIzquierda(menuTam, menuTam.getX(), -90, 10, 1);
     }//GEN-LAST:event_pequenioBtnMouseClicked
 
