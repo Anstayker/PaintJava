@@ -11,12 +11,17 @@ package demo;
  */
 public class LineaDato {
     int x0,x1,y0,y1;
+    int xInit0, yInit0, xInit1, yInit1;
     
     public LineaDato(int x0, int x1, int y0, int y1){
         this.x0 = x0;
         this.x1 = x1;
         this.y0 = y0;
         this.y1 = y1;
+        xInit0 = x0;
+        xInit1 = x1;
+        yInit0 = y0;
+        yInit1 = y1;
     }
 
     public int getX0() {
@@ -49,6 +54,22 @@ public class LineaDato {
 
     public void setY1(int y1) {
         this.y1 = y1;
+    }
+
+    public int getxInit0() {
+        return xInit0;
+    }
+
+    public int getyInit0() {
+        return yInit0;
+    }
+
+    public int getxInit1() {
+        return xInit1;
+    }
+
+    public int getyInit1() {
+        return yInit1;
     }
     
     

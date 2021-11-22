@@ -1122,6 +1122,71 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_segmentadoBtn1MouseExited
 
     private void girarBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girarBtn1MouseClicked
+        Graphics g = Lienzo.getGraphics();
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());       
+        for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
+             
+            if(linea.getX0() == linea.getxInit1()){
+                Linea l = new Linea ();            
+                l.drawLinea(g, linea.getX0()+30, linea.getY0(), linea.getX1()-30, linea.getY1());            
+                linea.setX0(linea.getX0()+30);
+                linea.setX1(linea.getX1()-30);
+                linea.setY0(linea.getY0());
+                linea.setY1(linea.getY1());     
+            }else{
+                if(linea.getY1() == linea.getyInit0()){
+                    Linea l = new Linea();
+                    l.drawLinea(g, linea.getX0()+30, linea.getY0(), linea.getX1()-30, linea.getY1());            
+                    linea.setX0(linea.getX0()+30);
+                    linea.setX1(linea.getX1()-30);
+                    linea.setY0(linea.getY0());
+                    linea.setY1(linea.getY1());
+                }else{
+                    Linea l = new Linea ();            
+                    l.drawLinea(g, linea.getX0(), linea.getY0()+30, linea.getX1(), linea.getY1()-30);            
+                    linea.setX0(linea.getX0());
+                    linea.setX1(linea.getX1());
+                    linea.setY0(linea.getY0()+30);
+                    linea.setY1(linea.getY1()-30);
+                }
+            }
+            System.out.println("Punto a: " + linea.getX0()+ " , " + linea.getY0() + "Punto b: " +linea.getX1()+ " , " +linea.getY1());
+        }
+        for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
+            Cuadrado c = new Cuadrado ();
+            if(cuadrado.getX0()< cuadrado.getX1()){
+                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);            
+                cuadrado.setX0(cuadrado.getX0()-20);
+                cuadrado.setX1(cuadrado.getX1()+20);
+                cuadrado.setY0(cuadrado.getY0()-20);
+                cuadrado.setY1(cuadrado.getY1()+20);
+            }else{
+                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);            
+                cuadrado.setX0(cuadrado.getX0()+20);
+                cuadrado.setX1(cuadrado.getX1()-20);
+                cuadrado.setY0(cuadrado.getY0()-20);
+                cuadrado.setY1(cuadrado.getY1()+20);
+            }
+        }
+        for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
+            Triangulo t = new Triangulo();
+            int xSuperior = triangulo.getvSX();
+            int ySuperior = triangulo.getvSY();
+            int xDerecho = triangulo.getvDX();
+            int yDerecho = triangulo.getvDY();
+            int xIzquierdo = triangulo.getvIX();
+            int yIzquierdo = triangulo.getvIY();
+            t.drawTriangulo(g, xSuperior, ySuperior - 30, xDerecho + 30, yDerecho, xIzquierdo - 30, yIzquierdo);
+            triangulo.setVerticeSuperiorY(ySuperior - 30);
+            triangulo.setVerticeDerechoX(xDerecho + 30);
+            triangulo.setVerticeIzquierdoX(xIzquierdo -30);
+        }
+        for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
+            Circunferencia cir = new Circunferencia();
+            cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);
+            circulo.setRadio(circulo.getRadio()+30);
+        }
+        
         System.out.println("Girar");
     }//GEN-LAST:event_girarBtn1MouseClicked
 
@@ -1154,11 +1219,100 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_tamanioBtnMouseClicked
 
     private void grandeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grandeBtnMouseClicked
-        System.out.println("CRECE");
+        Graphics g = Lienzo.getGraphics();
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
+            Linea l = new Linea ();            
+            l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()+30, linea.getY1()+30);            
+            linea.setX0(linea.getX0());
+            linea.setX1(linea.getX1()+30);
+            linea.setY0(linea.getY0());
+            linea.setY1(linea.getY1()+30);            
+        }
+        for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
+            Cuadrado c = new Cuadrado ();
+            if(cuadrado.getX0()< cuadrado.getX1()){
+                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);            
+                cuadrado.setX0(cuadrado.getX0()-20);
+                cuadrado.setX1(cuadrado.getX1()+20);
+                cuadrado.setY0(cuadrado.getY0()-20);
+                cuadrado.setY1(cuadrado.getY1()+20);
+            }else{
+                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);            
+                cuadrado.setX0(cuadrado.getX0()+20);
+                cuadrado.setX1(cuadrado.getX1()-20);
+                cuadrado.setY0(cuadrado.getY0()-20);
+                cuadrado.setY1(cuadrado.getY1()+20);
+            }
+        }
+        for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
+            Triangulo t = new Triangulo();
+            int xSuperior = triangulo.getvSX();
+            int ySuperior = triangulo.getvSY();
+            int xDerecho = triangulo.getvDX();
+            int yDerecho = triangulo.getvDY();
+            int xIzquierdo = triangulo.getvIX();
+            int yIzquierdo = triangulo.getvIY();
+            t.drawTriangulo(g, xSuperior, ySuperior - 30, xDerecho + 30, yDerecho, xIzquierdo - 30, yIzquierdo);
+            triangulo.setVerticeSuperiorY(ySuperior - 30);
+            triangulo.setVerticeDerechoX(xDerecho + 30);
+            triangulo.setVerticeIzquierdoX(xIzquierdo -30);
+        }
+        for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
+            Circunferencia cir = new Circunferencia();
+            cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);
+            circulo.setRadio(circulo.getRadio()+30);
+        }
+        
+        
         desplace.desplazarIzquierda(menuTam, menuTam.getX(), -90, 10, 1);
     }//GEN-LAST:event_grandeBtnMouseClicked
 
     private void pequenioBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pequenioBtnMouseClicked
+        Graphics g = Lienzo.getGraphics();
+        g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());
+        for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
+            Linea l = new Linea ();            
+            l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()-30, linea.getY1()-30);            
+            linea.setX0(linea.getX0());
+            linea.setX1(linea.getX1()-30);
+            linea.setY0(linea.getY0());
+            linea.setY1(linea.getY1()-30);            
+        }
+        for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
+            Cuadrado c = new Cuadrado ();
+            if(cuadrado.getX0()< cuadrado.getX1()){
+                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()+20, cuadrado.getX1()-20, cuadrado.getY1()-20);            
+                cuadrado.setX0(cuadrado.getX0()+20);
+                cuadrado.setX1(cuadrado.getX1()-20);
+                cuadrado.setY0(cuadrado.getY0()+20);
+                cuadrado.setY1(cuadrado.getY1()-20);
+            }else{
+                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()+20, cuadrado.getX1()+20, cuadrado.getY1()-20);            
+                cuadrado.setX0(cuadrado.getX0()-20);
+                cuadrado.setX1(cuadrado.getX1()+20);
+                cuadrado.setY0(cuadrado.getY0()+20);
+                cuadrado.setY1(cuadrado.getY1()-20);
+            }
+        }
+        for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
+            Triangulo t = new Triangulo();
+            int xSuperior = triangulo.getvSX();
+            int ySuperior = triangulo.getvSY();
+            int xDerecho = triangulo.getvDX();
+            int yDerecho = triangulo.getvDY();
+            int xIzquierdo = triangulo.getvIX();
+            int yIzquierdo = triangulo.getvIY();
+            t.drawTriangulo(g, xSuperior, ySuperior + 30, xDerecho - 30, yDerecho, xIzquierdo + 30, yIzquierdo);
+            triangulo.setVerticeSuperiorY(ySuperior + 30);
+            triangulo.setVerticeDerechoX(xDerecho - 30);
+            triangulo.setVerticeIzquierdoX(xIzquierdo + 30);
+        }
+        for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
+            Circunferencia cir = new Circunferencia();
+            cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()-30);
+            circulo.setRadio(circulo.getRadio()-30);
+        }
         System.out.println("decrece");
         desplace.desplazarIzquierda(menuTam, menuTam.getX(), -90, 10, 1);
     }//GEN-LAST:event_pequenioBtnMouseClicked
