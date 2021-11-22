@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demo;
 
-/**
- *
- * @author Kevin
- */
 public class LineaDato {
+    
     int x0,x1,y0,y1;
     int xInit0, yInit0, xInit1, yInit1;
     
-    public LineaDato(int x0, int x1, int y0, int y1){
+    int grosor;
+    boolean segmentado;
+    
+    public LineaDato(int x0, int x1, int y0, int y1, int grosor, boolean segmentado){
         this.x0 = x0;
         this.x1 = x1;
         this.y0 = y0;
@@ -22,6 +17,8 @@ public class LineaDato {
         xInit1 = x1;
         yInit0 = y0;
         yInit1 = y1;
+        this.grosor = grosor;
+        this.segmentado = segmentado;
     }
 
     public int getX0() {
@@ -71,6 +68,14 @@ public class LineaDato {
     public int getyInit1() {
         return yInit1;
     }
+    
+    public int getGrosor() {
+        return grosor;
+    }
+
+    public boolean isSegmentado() {
+        return segmentado;
+    }    
     
     
 }

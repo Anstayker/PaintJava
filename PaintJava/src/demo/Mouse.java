@@ -54,7 +54,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     linea.setGrosor(grosor);
                     linea.setSegmentar(segmentado);
                     linea.drawLinea(graphics, xInicial, yInicial, xFinal, yFinal);
-                    almacen.getLineasAlm().add(new LineaDato(xInicial, xFinal, yInicial, yFinal));
+                    almacen.getLineasAlm().add(new LineaDato(xInicial, xFinal, yInicial, yFinal, grosor, segmentado));
                     linea.drawLinea(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -80,7 +80,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     cuadrado.setGrosor(grosor);
                     cuadrado.setSegmentar(segmentado);
                     cuadrado.drawCuadrado(graphics, xInicial, yInicial, xFinal, yFinal);
-                    almacen.getCuadradosAlm().add(new CuadradoDato(xInicial, xFinal, yInicial, yFinal));
+                    almacen.getCuadradosAlm().add(new CuadradoDato(xInicial, xFinal, yInicial, yFinal, grosor, segmentado));
                     cuadrado.drawCuadrado(imageGraphics, xInicial, yInicial, xFinal, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -110,7 +110,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     triangulo.setGrosor(grosor);
                     triangulo.setSegmentar(segmentado);
                     triangulo.drawTriangulo(graphics, x0, y0, x1, y1, x2, y2);
-                    almacen.getTriangulosAlm().add(new TrianguloDato(x0, y0, x1, y1, x2, y2)); 
+                    almacen.getTriangulosAlm().add(new TrianguloDato(x0, y0, x1, y1, x2, y2, grosor, segmentado)); 
                     triangulo.drawTriangulo(imageGraphics, x0, y0, x1, y1, x2, y2);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -137,7 +137,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     circulo.setGrosor(grosor);
                     circulo.setSegmentar(segmentado);
                     circulo.drawCirculo(graphics, xCentro, yCentro, (int) radio);
-                    almacen.getCirculosAlm().add(new CirculoDato((int)radio, xCentro, yCentro));
+                    almacen.getCirculosAlm().add(new CirculoDato((int)radio, xCentro, yCentro, grosor, segmentado));
                     circulo.drawCirculo(imageGraphics, yCentro, yCentro, yFinal);
                     coordenadasX.clear();
                     coordenadasY.clear();
@@ -170,7 +170,7 @@ public class Mouse implements MouseListener, MouseMotionListener{
                         curva.setSegmentar(segmentado);
                          curva.drawBezier((Graphics2D) graphics, points);
                          curva.drawBezier((Graphics2D) imageGraphics, points);
-                         almacen.getCurvaAlm().add(new CurvaDato(points));
+                         almacen.getCurvaAlm().add(new CurvaDato(points, grosor, segmentado));
                          coordenadasX.clear();
                          coordenadasY.clear();
                         System.out.println("Click derecho");

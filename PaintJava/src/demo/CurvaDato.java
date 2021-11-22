@@ -1,21 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demo;
 
 import java.awt.geom.Point2D;
 
-/**
- *
- * @author Kevin
- */
 public class CurvaDato {
     Point2D[] puntos;
+
+    int grosor;
+    boolean segmentado;
     
-    public CurvaDato(Point2D[] p){
+    public CurvaDato(Point2D[] p, int grosor, boolean segmentado) {
         puntos = p;
+        this.grosor = grosor;
+        this.segmentado = segmentado;
     }
 
     public Point2D[] getPuntos() {

@@ -101,19 +101,16 @@ public class Cuadrado extends JPanel {
         }
     }
     public void dibujar(Graphics g, int x0,int y0, int x1, int y1, int x2, int y2, int x3, int y3){
-        Linea l1 = new Linea();
-        Linea l2 = new Linea();
-        Linea l3 = new Linea();
-        Linea l4 = new Linea();
-        l1.drawLinea(g, x0, y0, x1, y1);        
-        l2.drawLinea(g, x1, y1, x2, y2);
-        l3.drawLinea(g, x2, y2, x3, y3);
-        l4.drawLinea(g, x3, y3, x0, y0);
+        Linea l = new Linea();
+        
+        l.setGrosor(grosor);
+        l.setSegmentar(segmentar);
+        
+        l.drawLinea(g, x0, y0, x1, y1);        
+        l.drawLinea(g, x1, y1, x2, y2);
+        l.drawLinea(g, x2, y2, x3, y3);
+        l.drawLinea(g, x3, y3, x0, y0);
 
-       /** l1.drawLinea(g, 100, 100, 400, 100);        
-        l2.drawLinea(g, 400, 100, 400, 400);
-        l3.drawLinea(g, 400, 400, 100, 400);
-        l4.drawLinea(g, 100, 400, 100, 100);**/
     }
 
     public void setX0(int xInicial) {

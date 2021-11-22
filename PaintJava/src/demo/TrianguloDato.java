@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package demo;
 
-/**
- *
- * @author Kevin
- */
 public class TrianguloDato {
     private int x1,y1,x2,y2,x3,y3;
     private int vSX, vSY, vDX, vDY, vIX, vIY;
 
-    public TrianguloDato(int x1, int y1, int x2, int y2, int x3, int y3) {
+    int grosor;
+    boolean segmentado;
+    
+    public TrianguloDato(int x1, int y1, int x2, int y2, int x3, int y3, int grosor, boolean segmentado) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -26,6 +21,8 @@ public class TrianguloDato {
         vIY = verticeIzquierdoY();
         vDX = verticeDerechoX();
         vDY = verticeDerechoY();
+        this.grosor = grosor;
+        this.segmentado = segmentado;
     }
     
     public int verticeSuperiorY(){
@@ -234,5 +231,12 @@ public class TrianguloDato {
         this.y3 = y3;
     }
     
+    public int getGrosor() {
+        return grosor;
+    }
+
+    public boolean isSegmentado() {
+        return segmentado;
+    }  
     
 }

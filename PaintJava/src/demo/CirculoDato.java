@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package demo;
 
-/**
- *
- * @author Kevin
- */
 public class CirculoDato {
     int xC, yC;
     int radio;
     
-    public CirculoDato(int r, int xCentro, int yCentro){
+    int grosor;
+    boolean segmentado;
+    
+    public CirculoDato(int r, int xCentro, int yCentro, int grosor, boolean segmentado){
         radio=r;
         xC = xCentro;
         yC = yCentro;
+        this.grosor = grosor;
+        this.segmentado = segmentado;
     }
 
     public int getRadio() {
@@ -43,5 +40,12 @@ public class CirculoDato {
         this.yC = yC;
     }
     
+    public int getGrosor() {
+        return grosor;
+    }
+
+    public boolean isSegmentado() {
+        return segmentado;
+    }
     
 }

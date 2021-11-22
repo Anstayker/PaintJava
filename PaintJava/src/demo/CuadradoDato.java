@@ -1,24 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demo;
 
-/**
- *
- * @author Kevin
- */
 public class CuadradoDato {
     int x0,x1,x2,x3,y0,y1,y2,y3;
 
-    public CuadradoDato(int x0, int x1, int y0, int y1) {
+    int grosor;
+    boolean segmentado;
+    
+    public CuadradoDato(int x0, int x1, int y0, int y1, int grosor, boolean segmento) {
         this.x0 = x0;
         this.x1 = x1;
         this.y0 = y0;
         this.y1 = y1;
+        this.grosor = grosor;
+        this.segmentado = segmentado;
     }
-    public CuadradoDato(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3){
+    public CuadradoDato(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3, int grosor, boolean segmento){
         this.x0 = x0;
         this.x1 = x1;
         this.x2 = x2;
@@ -27,6 +23,8 @@ public class CuadradoDato {
         this.y1 = y1;
         this.y2 = y2;
         this.y3 = y3;
+        this.grosor = grosor;
+        this.segmentado = segmentado;
     }
 
     public int getX0() {
