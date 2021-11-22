@@ -1143,61 +1143,90 @@ public class Pantalla extends javax.swing.JFrame {
         Graphics g = Lienzo.getGraphics();
         g.clearRect(0, 0, Lienzo.getWidth(), Lienzo.getHeight());       
         for(LineaDato linea: mouse.getAlmacen().getLineasAlm()){
-             
-            if(linea.getX0() == linea.getxInit1()){
-                Linea l = new Linea ();            
-                l.drawLinea(g, linea.getX0()+30, linea.getY0(), linea.getX1()-30, linea.getY1());            
-                linea.setX0(linea.getX0()+30);
-                linea.setX1(linea.getX1()-30);
-                linea.setY0(linea.getY0());
-                linea.setY1(linea.getY1());     
-            }else{
-                if(linea.getY1() == linea.getyInit0()){
-                    Linea l = new Linea();
-                    l.drawLinea(g, linea.getX0()+30, linea.getY0(), linea.getX1()-30, linea.getY1());            
-                    linea.setX0(linea.getX0()+30);
-                    linea.setX1(linea.getX1()-30);
-                    linea.setY0(linea.getY0());
-                    linea.setY1(linea.getY1());
-                }else{
-                    Linea l = new Linea ();            
-                    l.drawLinea(g, linea.getX0(), linea.getY0()+30, linea.getX1(), linea.getY1()-30);            
-                    linea.setX0(linea.getX0());
-                    linea.setX1(linea.getX1());
-                    linea.setY0(linea.getY0()+30);
-                    linea.setY1(linea.getY1()-30);
-                }
-            }
+            int puntoMedioX = (linea.getX1() + linea.getX0())/2;
+            int puntoMedioY = (linea.getY1()+linea.getY0())/2;
+            
+            double newX1 = puntoMedioX + (linea.getX1()-puntoMedioX)*Math.cos(10)- (linea.getY1()-puntoMedioY)*Math.sin(10);
+            double newY1 = puntoMedioY + (linea.getX1()-puntoMedioX)*Math.sin(10)+ (linea.getY1()-puntoMedioY)*Math.cos(10);
+            
+            double newX0 = puntoMedioX + (linea.getX0()-puntoMedioX)*Math.cos(10)- (linea.getY0()-puntoMedioY)*Math.sin(10);
+            double newY0 = puntoMedioY + (linea.getX0()-puntoMedioX)*Math.sin(10)+ (linea.getY0()-puntoMedioY)*Math.cos(10);
+            
+            Linea l = new Linea();
+            l.drawLinea(g, (int) newX0, (int) newY0, (int)newX1, (int)newY1);
+            linea.setX0((int) newX0);
+            linea.setY0((int) newY0);
+            linea.setX1((int) newX1);
+            linea.setY1((int) newY1);
+            
             System.out.println("Punto a: " + linea.getX0()+ " , " + linea.getY0() + "Punto b: " +linea.getX1()+ " , " +linea.getY1());
         }
         for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
-            Cuadrado c = new Cuadrado ();
-            if(cuadrado.getX0()< cuadrado.getX1()){
-                c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);            
-                cuadrado.setX0(cuadrado.getX0()-20);
-                cuadrado.setX1(cuadrado.getX1()+20);
-                cuadrado.setY0(cuadrado.getY0()-20);
-                cuadrado.setY1(cuadrado.getY1()+20);
-            }else{
-                c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);            
-                cuadrado.setX0(cuadrado.getX0()+20);
-                cuadrado.setX1(cuadrado.getX1()-20);
-                cuadrado.setY0(cuadrado.getY0()-20);
-                cuadrado.setY1(cuadrado.getY1()+20);
-            }
+            int x2 = cuadrado.getX1();
+            int y2 = cuadrado.getY0();
+            int x3 = cuadrado.getX0();
+            int y3 = cuadrado.getY1();
+            int xPuntoMedio = (cuadrado.getX0()+cuadrado.getX1())/2;
+            int yPuntoMedio = (cuadrado.getY0()+cuadrado.getY1())/2;
+            
+            double newX0 = xPuntoMedio + (cuadrado.getX0()-xPuntoMedio)*Math.cos(10) - (cuadrado.getX0()-xPuntoMedio)*Math.sin(10);
+            double newY0 = yPuntoMedio + (cuadrado.getY0()-yPuntoMedio)*Math.sin(10) + (cuadrado.getY0()-yPuntoMedio)*Math.cos(10);
+            double newX1 = xPuntoMedio + (cuadrado.getX1()-xPuntoMedio)*Math.cos(10) - (cuadrado.getX1()-xPuntoMedio)*Math.sin(10);
+            double newY1 = yPuntoMedio + (cuadrado.getY1()-yPuntoMedio)*Math.sin(10) + (cuadrado.getY1()-yPuntoMedio)*Math.cos(10);
+            double newX2 = xPuntoMedio + (x2-xPuntoMedio)*Math.cos(10) - (x2-xPuntoMedio)*Math.sin(10);
+            double newY2 = yPuntoMedio + (y2-yPuntoMedio)*Math.sin(10) + (y2-yPuntoMedio)*Math.cos(10);
+            double newX3 = xPuntoMedio + (x3-xPuntoMedio)*Math.cos(10) - (x3-xPuntoMedio)*Math.sin(10);
+            double newY3 = yPuntoMedio + (y3-yPuntoMedio)*Math.sin(10) + (y3-yPuntoMedio)*Math.cos(10);
+            
+            Cuadrado c = new Cuadrado();
+            System.out.println(xPuntoMedio + " , " + yPuntoMedio);
+            System.out.println(newX0  +" , "+ newY0);
+            System.out.println(newX1  +" , "+ newY1);
+            System.out.println(newX2  +" , "+ newY2);
+            System.out.println(newX3  +" , "+ newY3);
+            c.drawCuadrado(g, (int)newX0, (int)newY0, (int)newX2, (int)newY2, (int)newX1, (int)newY1, (int)newX3, (int)newY3);
+            cuadrado.setX0((int)newX0);
+            cuadrado.setY0((int)newY0);
+            cuadrado.setX1((int)newX1);
+            cuadrado.setY1((int)newY1);
+            cuadrado.setX2((int)newX2);
+            cuadrado.setY2((int)newY2);
+            cuadrado.setX3((int)newX3);
+            cuadrado.setY3((int)newY3);
+            System.out.println(xPuntoMedio + " , " + yPuntoMedio);
+            System.out.println(newX0  +" , "+ newY0);
+            System.out.println(newX1  +" , "+ newY1);
+            System.out.println(newX2  +" , "+ newY2);
+            System.out.println(newX3  +" , "+ newY3);
         }
         for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
-            Triangulo t = new Triangulo();
             int xSuperior = triangulo.getvSX();
             int ySuperior = triangulo.getvSY();
             int xDerecho = triangulo.getvDX();
             int yDerecho = triangulo.getvDY();
             int xIzquierdo = triangulo.getvIX();
             int yIzquierdo = triangulo.getvIY();
-            t.drawTriangulo(g, xSuperior, ySuperior - 30, xDerecho + 30, yDerecho, xIzquierdo - 30, yIzquierdo);
-            triangulo.setVerticeSuperiorY(ySuperior - 30);
-            triangulo.setVerticeDerechoX(xDerecho + 30);
-            triangulo.setVerticeIzquierdoX(xIzquierdo -30);
+            double puntoMedioInfX = (xDerecho+xIzquierdo)/2;
+            double puntoMedioInfY = (yDerecho+yIzquierdo)/2;
+            double ptMedioTrX = ((xSuperior + 2*puntoMedioInfX))/3;
+            double ptMedioTrY = ((ySuperior + 2*puntoMedioInfY))/3;
+            
+            double newXSuperior = ptMedioTrX + (xSuperior-ptMedioTrX)*Math.cos(10) - (ySuperior-ptMedioTrY)*Math.sin(10);
+            double newYSuperior = ptMedioTrY + (xSuperior-ptMedioTrX)*Math.sin(10) + (ySuperior-ptMedioTrY)*Math.cos(10);
+            double newXIzquierdo = ptMedioTrX + (xIzquierdo-ptMedioTrX)*Math.cos(10) - (yIzquierdo-ptMedioTrY)*Math.sin(10);
+            double newYIzquierdo = ptMedioTrY + (xIzquierdo-ptMedioTrX)*Math.sin(10) + (yIzquierdo-ptMedioTrY)*Math.cos(10);
+            double newXDerecho = ptMedioTrX + (xDerecho-ptMedioTrX)*Math.cos(10) - (yDerecho-ptMedioTrY)*Math.sin(10);
+            double newYDerecho = ptMedioTrY + (xDerecho-ptMedioTrX)*Math.sin(10) + (yDerecho-ptMedioTrY)*Math.cos(10);
+            Triangulo t = new Triangulo();
+            t.drawTriangulo(g, (int) newXSuperior, (int) newYSuperior, (int) newXIzquierdo, (int) newYIzquierdo, (int) newXDerecho, (int) newYDerecho);
+            triangulo.setVerticeSuperiorX((int)newXSuperior);
+            triangulo.setVerticeSuperiorY((int) newYSuperior);
+            triangulo.setVerticeIzquierdoX((int) newXIzquierdo);
+            triangulo.setVerticeIzquierdoY((int) newYIzquierdo);
+            triangulo.setVerticeDerechoX((int) newXDerecho);
+            triangulo.setVerticeDerechoY((int) newYDerecho);
+            System.out.println(newXSuperior +  " , " + newYSuperior + "");
+            System.out.println(ptMedioTrX + " , " + ptMedioTrY);
         }
         for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
             Circunferencia cir = new Circunferencia();
