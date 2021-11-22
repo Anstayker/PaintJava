@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demo;
 
 import java.awt.Color;
@@ -16,10 +11,6 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author Usuario
- */
 public class Mouse implements MouseListener, MouseMotionListener{
    
     private int mouseX;
@@ -32,8 +23,9 @@ public class Mouse implements MouseListener, MouseMotionListener{
     private Graphics graphics;
     private Graphics imageGraphics;
     private Color currentColor;
+    private int grosor;
+    private boolean segmentado;
     
-    private Polygon poligono = new Polygon();
     private Almacen almacen = new Almacen();
     
     @Override
@@ -59,6 +51,8 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.fillOval(xFinal, yFinal, 5, 5);
                     graphics.setColor(currentColor);
                     
+                    linea.setGrosor(grosor);
+                    linea.setSegmentar(segmentado);
                     linea.drawLinea(graphics, xInicial, yInicial, xFinal, yFinal);
                     almacen.getLineasAlm().add(new LineaDato(xInicial, xFinal, yInicial, yFinal));
                     linea.drawLinea(imageGraphics, xInicial, yInicial, xFinal, yFinal);
@@ -83,6 +77,8 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.fillOval(xFinal, yFinal, 5, 5);
                     graphics.setColor(currentColor);
                     
+                    cuadrado.setGrosor(grosor);
+                    cuadrado.setSegmentar(segmentado);
                     cuadrado.drawCuadrado(graphics, xInicial, yInicial, xFinal, yFinal);
                     almacen.getCuadradosAlm().add(new CuadradoDato(xInicial, xFinal, yInicial, yFinal));
                     cuadrado.drawCuadrado(imageGraphics, xInicial, yInicial, xFinal, yFinal);
@@ -111,6 +107,8 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.fillOval(x2, y2, 5, 5);
                     graphics.setColor(currentColor);
                     
+                    triangulo.setGrosor(grosor);
+                    triangulo.setSegmentar(segmentado);
                     triangulo.drawTriangulo(graphics, x0, y0, x1, y1, x2, y2);
                     almacen.getTriangulosAlm().add(new TrianguloDato(x0, y0, x1, y1, x2, y2)); 
                     triangulo.drawTriangulo(imageGraphics, x0, y0, x1, y1, x2, y2);
@@ -136,6 +134,8 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     graphics.fillOval(xFinal, yFinal, 5, 5);
                     graphics.setColor(currentColor);
                     
+                    circulo.setGrosor(grosor);
+                    circulo.setSegmentar(segmentado);
                     circulo.drawCirculo(graphics, xCentro, yCentro, (int) radio);
                     almacen.getCirculosAlm().add(new CirculoDato((int)radio, xCentro, yCentro));
                     circulo.drawCirculo(imageGraphics, yCentro, yCentro, yFinal);
@@ -166,6 +166,8 @@ public class Mouse implements MouseListener, MouseMotionListener{
                     }
                         
                         Bezier curva = new Bezier();
+                        curva.setGrosor(grosor);
+                        curva.setSegmentar(segmentado);
                          curva.drawBezier((Graphics2D) graphics, points);
                          curva.drawBezier((Graphics2D) imageGraphics, points);
                          almacen.getCurvaAlm().add(new CurvaDato(points));
@@ -221,6 +223,14 @@ public class Mouse implements MouseListener, MouseMotionListener{
     }
     public Almacen getAlmacen(){
         return almacen;
+    }
+    
+    public void setGrosor(int grosor) {
+        this.grosor = grosor;
+    }
+    
+    public void setSegmentar(boolean segmentado) {
+        this.segmentado = segmentado;
     }
     
 }

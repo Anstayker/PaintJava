@@ -21,6 +21,8 @@ public class Pantalla extends javax.swing.JFrame {
     private BufferedImage image;
     private Graphics2D imageGraphics;
     private Mouse mouse;
+    private int grosor;
+    private boolean segmentado;
     
     public Pantalla() {
         initComponents();
@@ -32,6 +34,8 @@ public class Pantalla extends javax.swing.JFrame {
         mouse = new Mouse();
         mouse.setImageGraphics(imageGraphics);
         Lienzo.addMouseListener(mouse);
+        grosor = 1;
+        segmentado = false;
     }
 
     @SuppressWarnings("unchecked")
@@ -964,6 +968,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_colorBtnMouseExited
 
     private void figGeoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_figGeoBtnMouseClicked
+
         if(menuFigu1.getX() == -180){
             desplace.desplazarDerecha(menuFigu1, menuFigu1.getX(), 0, 10, 1);
         }else{
@@ -972,6 +977,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_figGeoBtnMouseClicked
 
     private void segmentadoBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentadoBtnMouseClicked
+
         if(menuGrosor.getX() == -60){
             desplace.desplazarDerecha(menuGrosor, menuGrosor.getX(), 0, 10, 1);
         }else{
@@ -985,6 +991,8 @@ public class Pantalla extends javax.swing.JFrame {
         g.setColor(color);
         mouse.setFigura("Cuadrado");
         mouse.setGraphics(g);
+        mouse.setGrosor(grosor);
+        mouse.setSegmentar(segmentado);
         
         imageGraphics.setColor(color);
         
@@ -997,6 +1005,9 @@ public class Pantalla extends javax.swing.JFrame {
         g.setColor(color);
         mouse.setFigura("Triangulo");
         mouse.setGraphics(g);
+        mouse.setGrosor(grosor);
+        mouse.setSegmentar(segmentado);
+        
         imageGraphics.setColor(color);
        
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
@@ -1008,29 +1019,35 @@ public class Pantalla extends javax.swing.JFrame {
         g.setColor(color);
         mouse.setFigura("Circulo");
         mouse.setGraphics(g);
-
+        mouse.setGrosor(grosor);
+        mouse.setSegmentar(segmentado);
+        
         imageGraphics.setColor(color);
         
         desplace.desplazarIzquierda(menuFigu1, menuFigu1.getX(), -180, 10, 1);
     }//GEN-LAST:event_circuloMouseClicked
 
     private void segmentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentoMouseClicked
-        System.out.println("Segmentado");
+        segmentado = true;
+        grosor = 1;
         desplace.desplazarIzquierda(menuGrosor, menuGrosor.getX(), -60, 5, 1);
     }//GEN-LAST:event_segmentoMouseClicked
 
     private void grosor1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grosor1MouseClicked
-        System.out.println("grosor1");
+        segmentado = false;
+        grosor = 1;
         desplace.desplazarIzquierda(menuGrosor, menuGrosor.getX(), -60, 5, 1);
     }//GEN-LAST:event_grosor1MouseClicked
 
     private void grosor2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grosor2MouseClicked
-        System.out.println("grosor2");
+        segmentado = false;
+        grosor = 4;
         desplace.desplazarIzquierda(menuGrosor, menuGrosor.getX(), -60, 5, 1);
     }//GEN-LAST:event_grosor2MouseClicked
 
     private void grosor3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grosor3MouseClicked
-        System.out.println("grosor3");
+        segmentado = false;
+        grosor = 8;
         desplace.desplazarIzquierda(menuGrosor, menuGrosor.getX(), -60, 10, 1);
     }//GEN-LAST:event_grosor3MouseClicked
 
@@ -1110,7 +1127,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_verdeOscMouseClicked
 
     private void segmentadoBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentadoBtn1MouseClicked
-        System.out.println("Segmentado");
+        segmentado = true;
+        grosor = 1;
     }//GEN-LAST:event_segmentadoBtn1MouseClicked
 
     private void segmentadoBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segmentadoBtn1MouseEntered
@@ -1321,10 +1339,11 @@ public class Pantalla extends javax.swing.JFrame {
         Graphics g = Lienzo.getGraphics();
         verificarColor();
         g.setColor(color);
-        Linea linea = new Linea();
 
         mouse.setFigura("Linea");
         mouse.setGraphics(g);
+        mouse.setGrosor(grosor);
+        mouse.setSegmentar(segmentado);
         
         imageGraphics.setColor(color);
     }//GEN-LAST:event_lineaBtnMouseClicked
@@ -1341,6 +1360,8 @@ public class Pantalla extends javax.swing.JFrame {
         g.setColor(color);
         mouse.setFigura("Curva");
         mouse.setGraphics(g);
+        mouse.setGrosor(grosor);
+        mouse.setSegmentar(segmentado);
         
         imageGraphics.setColor(color);
     }//GEN-LAST:event_CurvaBtnMouseClicked
