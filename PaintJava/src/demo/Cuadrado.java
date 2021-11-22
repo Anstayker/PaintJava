@@ -8,6 +8,8 @@ import javax.swing.*;
 public class Cuadrado extends JPanel {
 
     private int x0, y0, x1, y1;
+    private int x2, y2, x3, y3;
+    private boolean cuatroPuntosUsados;
    
     private int grosor = 1;
     private boolean segmentar = false;
@@ -17,16 +19,43 @@ public class Cuadrado extends JPanel {
         y0 = yInicial;
         x1 = xFinal;
         y1 = yFinal;
+        cuatroPuntosUsados = false;
+        paint((Graphics2D) g);
+        
+    }
+    public void drawCuadrado(Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
+        x0 = x1;
+        y0 = y1;
+        x1 = x2;
+        y1 = y2;
+        x2 = x3;
+        y2 = y3;
+        x3 = x4;
+        y3 = y4;
+        cuatroPuntosUsados = true;
         paint((Graphics2D) g);
     }
     
     public void paint(Graphics2D g) {
-    int xc0 = x0, yc0 = y0 ,xc1 = x1, yc1 = y1;
-    super.paint(g);
-    dibujar(g,xc0,xc0,yc0,yc1);
-    dibujar(g,xc0,xc1,yc0,yc0);
-    dibujar(g,xc0,xc1,yc1,yc1);
-    dibujar(g,xc1,xc1,yc1,yc0);
+        if(!cuatroPuntosUsados){
+            int xc0 = x0, yc0 = y0 ,xc1 = x1, yc1 = y1;
+            super.paint(g);
+            dibujar(g,xc0,xc0,yc0,yc1);
+            dibujar(g,xc0,xc1,yc0,yc0);
+            dibujar(g,xc0,xc1,yc1,yc1);
+            dibujar(g,xc1,xc1,yc1,yc0);
+        }else{
+            int xc0 = x0;
+            int yc0 = y0;
+            int xc1 = x1;
+            int yc1 = y1;
+            int xc2 = x2;
+            int yc2 = y2;
+            int xc3 = x3;
+            int yc3 = y3;            
+            super.paint(g);
+            dibujar(g, xc0, xc1, xc2, xc3, yc0, yc1, yc2, yc3);
+        }
     }
     
     public void dibujar (Graphics2D g,int x0,int x1,int y0,int y1){
@@ -70,6 +99,13 @@ public class Cuadrado extends JPanel {
                 g.drawLine(Math.round(x),Math.round(y),Math.round(x), Math.round(y));               
            }
         }
+    }
+    public void dibujar(Graphics g, int x0,int x1, int x2, int x3, int y0, int y1, int y2, int y3){
+        Linea l = new Linea();
+        l.drawLinea(g, x0, y0, x1, y1);
+        l.drawLinea(g, x1, y1, x2, y2);
+        l.drawLinea(g, x2, y2, x3, y3);
+        l.drawLinea(g, x3, y3, x0, y0);
     }
 
     public void setX0(int xInicial) {
