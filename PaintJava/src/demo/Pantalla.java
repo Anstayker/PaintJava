@@ -589,37 +589,37 @@ public class Pantalla extends javax.swing.JFrame {
 
         Lienzo.add(menuTam, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 280, 90, 48));
 
-        jButton1.setText("Up");
+        jButton1.setText("Arriba");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, -1, -1));
+        Lienzo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, -1, -1));
 
-        jButton2.setText("Left");
+        jButton2.setText("Izquierda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
+        Lienzo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, -1, -1));
 
-        jButton3.setText("Right");
+        jButton3.setText("Derecha");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 500, -1, -1));
+        Lienzo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, -1, -1));
 
-        jButton4.setText("Down");
+        jButton4.setText("Abajo");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        Lienzo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
+        Lienzo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 540, -1, -1));
 
         getContentPane().add(Lienzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 770, 570));
 
@@ -1156,6 +1156,8 @@ public class Pantalla extends javax.swing.JFrame {
             Linea l = new Linea();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             l.drawLinea(g, (int) newX0, (int) newY0, (int)newX1, (int)newY1);
             l.drawLinea(imageGraphics, (int) newX0, (int) newY0, (int)newX1, (int)newY1);
             linea.setX0((int) newX0);
@@ -1186,6 +1188,8 @@ public class Pantalla extends javax.swing.JFrame {
             Cuadrado c = new Cuadrado();
             c.setGrosor(cuadrado.grosor);
             c.setSegmentar(cuadrado.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCuadrado(g, (int)newX0, (int)newY0, (int)newX2, (int)newY2, (int)newX1, (int)newY1, (int)newX3, (int)newY3);
             c.drawCuadrado(imageGraphics, (int)newX0, (int)newY0, (int)newX2, (int)newY2, (int)newX1, (int)newY1, (int)newX3, (int)newY3);
             
@@ -1220,6 +1224,8 @@ public class Pantalla extends javax.swing.JFrame {
             Triangulo t = new Triangulo();
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             t.drawTriangulo(g, (int) newXSuperior, (int) newYSuperior, (int) newXIzquierdo, (int) newYIzquierdo, (int) newXDerecho, (int) newYDerecho);
             t.drawTriangulo(imageGraphics,(int) newXSuperior, (int) newYSuperior, (int) newXIzquierdo, (int) newYIzquierdo, (int) newXDerecho, (int) newYDerecho);
             triangulo.setVerticeSuperiorX((int)newXSuperior);
@@ -1235,6 +1241,8 @@ public class Pantalla extends javax.swing.JFrame {
             Circunferencia cir = new Circunferencia();
             cir.setGrosor(circulo.grosor);
             cir.setSegmentar(circulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio());
             cir.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC(), circulo.getRadio());            
         }
@@ -1242,6 +1250,8 @@ public class Pantalla extends javax.swing.JFrame {
             Bezier bezier = new Bezier();
             bezier.setGrosor(curva.grosor);
             bezier.setSegmentar(curva.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             bezier.drawBezier((Graphics2D) g, curva.getPuntos());
             bezier.drawBezier((Graphics2D) imageGraphics, curva.getPuntos());
         }
@@ -1284,6 +1294,8 @@ public class Pantalla extends javax.swing.JFrame {
             Linea l = new Linea ();  
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);
             l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()+30, linea.getY1()+30);
             l.drawLinea(imageGraphics, linea.getX0(), linea.getY0(), linea.getX1()+30, linea.getY1()+30);   
             linea.setX0(linea.getX0());
@@ -1295,7 +1307,9 @@ public class Pantalla extends javax.swing.JFrame {
             Cuadrado c = new Cuadrado ();
             if(cuadrado.getX0()< cuadrado.getX1()){
                 c.setGrosor(cuadrado.grosor);
-                c.setSegmentar(cuadrado.segmentado);                
+                c.setSegmentar(cuadrado.segmentado);
+                g.setColor(color);
+                imageGraphics.setColor(color);
                 c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);
                 c.drawCuadrado(imageGraphics, cuadrado.getX0()-20, cuadrado.getY0()-20, cuadrado.getX1()+20, cuadrado.getY1()+20);   
                 cuadrado.setX0(cuadrado.getX0()-20);
@@ -1304,7 +1318,9 @@ public class Pantalla extends javax.swing.JFrame {
                 cuadrado.setY1(cuadrado.getY1()+20);
             }else{
                 c.setGrosor(cuadrado.grosor);
-                c.setSegmentar(cuadrado.segmentado);                
+                c.setSegmentar(cuadrado.segmentado);
+                g.setColor(color);
+                imageGraphics.setColor(color);                
                 c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);
                 c.drawCuadrado(imageGraphics, cuadrado.getX0()+20, cuadrado.getY0()-20, cuadrado.getX1()-20, cuadrado.getY1()+20);   
                 cuadrado.setX0(cuadrado.getX0()+20);
@@ -1323,6 +1339,8 @@ public class Pantalla extends javax.swing.JFrame {
             int yIzquierdo = triangulo.getvIY();
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             t.drawTriangulo(g, xSuperior, ySuperior - 30, xDerecho + 30, yDerecho, xIzquierdo - 30, yIzquierdo);
             t.drawTriangulo(imageGraphics, xSuperior, ySuperior - 30, xDerecho + 30, yDerecho, xIzquierdo - 30, yIzquierdo);
             triangulo.setVerticeSuperiorY(ySuperior - 30);
@@ -1333,6 +1351,8 @@ public class Pantalla extends javax.swing.JFrame {
             Circunferencia cir = new Circunferencia();
             cir.setGrosor(circulo.grosor);
             cir.setSegmentar(circulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);
             cir.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC(), circulo.getRadio()+30);            
             circulo.setRadio(circulo.getRadio()+30);
@@ -1340,7 +1360,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
             Bezier bezier = new Bezier();
             bezier.setGrosor(curva.grosor);
-            bezier.setSegmentar(curva.segmentado);            
+            bezier.setSegmentar(curva.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             bezier.drawBezier((Graphics2D) g, curva.getPuntos());
             bezier.drawBezier((Graphics2D) imageGraphics, curva.getPuntos());            
         }
@@ -1356,6 +1378,8 @@ public class Pantalla extends javax.swing.JFrame {
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             l.drawLinea(g, linea.getX0(), linea.getY0(), linea.getX1()-30, linea.getY1()-30);
             l.drawLinea(imageGraphics, linea.getX0(), linea.getY0(), linea.getX1()-30, linea.getY1()-30);               
             linea.setX0(linea.getX0());
@@ -1367,7 +1391,9 @@ public class Pantalla extends javax.swing.JFrame {
             Cuadrado c = new Cuadrado ();
             if(cuadrado.getX0()< cuadrado.getX1()){
                 c.setGrosor(cuadrado.grosor);
-                c.setSegmentar(cuadrado.segmentado);                
+                c.setSegmentar(cuadrado.segmentado);
+                g.setColor(color);
+                imageGraphics.setColor(color);                
                 c.drawCuadrado(g, cuadrado.getX0()+20, cuadrado.getY0()+20, cuadrado.getX1()-20, cuadrado.getY1()-20);
                 c.drawCuadrado(imageGraphics, cuadrado.getX0()+20, cuadrado.getY0()+20, cuadrado.getX1()-20, cuadrado.getY1()-20);                 
                 cuadrado.setX0(cuadrado.getX0()+20);
@@ -1376,7 +1402,9 @@ public class Pantalla extends javax.swing.JFrame {
                 cuadrado.setY1(cuadrado.getY1()-20);
             }else{
                 c.setGrosor(cuadrado.grosor);
-                c.setSegmentar(cuadrado.segmentado);                
+                c.setSegmentar(cuadrado.segmentado);
+                g.setColor(color);
+                imageGraphics.setColor(color);                
                 c.drawCuadrado(g, cuadrado.getX0()-20, cuadrado.getY0()+20, cuadrado.getX1()+20, cuadrado.getY1()-20);
                 c.drawCuadrado(imageGraphics, cuadrado.getX0()-20, cuadrado.getY0()+20, cuadrado.getX1()+20, cuadrado.getY1()-20);                      
                 cuadrado.setX0(cuadrado.getX0()-20);
@@ -1394,7 +1422,9 @@ public class Pantalla extends javax.swing.JFrame {
             int xIzquierdo = triangulo.getvIX();
             int yIzquierdo = triangulo.getvIY();
             t.setGrosor(triangulo.grosor);
-            t.setSegmentar(triangulo.segmentado);            
+            t.setSegmentar(triangulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             t.drawTriangulo(g, xSuperior, ySuperior + 30, xDerecho - 30, yDerecho, xIzquierdo + 30, yIzquierdo);
             t.drawTriangulo(imageGraphics, xSuperior, ySuperior + 30, xDerecho - 30, yDerecho, xIzquierdo + 30, yIzquierdo);            
             triangulo.setVerticeSuperiorY(ySuperior + 30);
@@ -1405,6 +1435,8 @@ public class Pantalla extends javax.swing.JFrame {
             Circunferencia cir = new Circunferencia();
             cir.setGrosor(circulo.grosor);
             cir.setSegmentar(circulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             cir.drawCirculo(g, circulo.getxC(), circulo.getyC(), circulo.getRadio()-30);
             cir.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC(), circulo.getRadio()-30);            
             circulo.setRadio(circulo.getRadio()-30);
@@ -1413,7 +1445,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CurvaDato curva: mouse.getAlmacen().getCurvaAlm()){
             Bezier bezier = new Bezier();
             bezier.setGrosor(curva.grosor);
-            bezier.setSegmentar(curva.segmentado);            
+            bezier.setSegmentar(curva.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             bezier.drawBezier((Graphics2D) g, curva.getPuntos());
             bezier.drawBezier((Graphics2D) imageGraphics, curva.getPuntos());            
         }
@@ -1460,6 +1494,8 @@ public class Pantalla extends javax.swing.JFrame {
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             l.drawLinea(g, linea.getX0(), linea.getY0() -5, linea.getX1(), linea.getY1() -5);
             l.drawLinea(imageGraphics, linea.getX0(), linea.getY0() -5, linea.getX1(), linea.getY1() -5);
             linea.setY0(linea.getY0()-5);
@@ -1468,7 +1504,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
             Cuadrado c = new Cuadrado();
             c.setGrosor(cuadrado.grosor);
-            c.setSegmentar(cuadrado.segmentado);            
+            c.setSegmentar(cuadrado.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCuadrado(g, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
             c.drawCuadrado(imageGraphics, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
             cuadrado.setY0(cuadrado.getY0()-5);
@@ -1478,6 +1516,8 @@ public class Pantalla extends javax.swing.JFrame {
             Triangulo t = new Triangulo();
             t.setGrosor(triangulo.grosor);
             t.setSegmentar(triangulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             t.drawTriangulo(g, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
             t.drawTriangulo(imageGraphics, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
             triangulo.setY1(triangulo.getY1()-5);
@@ -1487,7 +1527,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CirculoDato circulo: mouse.getAlmacen().getCirculosAlm()){
             Circunferencia c = new Circunferencia();
             c.setGrosor(circulo.grosor);
-            c.setSegmentar(circulo.segmentado);            
+            c.setSegmentar(circulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCirculo(g, circulo.getxC(), circulo.getyC()-5, circulo.getRadio());
             c.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC()-5, circulo.getRadio());
             circulo.setyC(circulo.getyC()-5);            
@@ -1496,7 +1538,9 @@ public class Pantalla extends javax.swing.JFrame {
             Bezier b = new Bezier();
             Point2D[] pts = curva.getPuntos();
             b.setGrosor(curva.grosor);
-            b.setSegmentar(curva.segmentado);            
+            b.setSegmentar(curva.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaArriba());
             b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaArriba());
             curva.moverPtsCurvaArriba();
@@ -1513,6 +1557,8 @@ public class Pantalla extends javax.swing.JFrame {
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             l.drawLinea(g, linea.getX0()-5, linea.getY0(), linea.getX1()-5, linea.getY1());
             l.drawLinea(imageGraphics, linea.getX0()-5, linea.getY0(), linea.getX1()-5, linea.getY1());
             linea.setX0(linea.getX0()-5);
@@ -1521,7 +1567,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
             Cuadrado c = new Cuadrado();
             c.setGrosor(cuadrado.grosor);
-            c.setSegmentar(cuadrado.segmentado);            
+            c.setSegmentar(cuadrado.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCuadrado(g, cuadrado.getX0()-5, cuadrado.getY0(), cuadrado.getX1()-5, cuadrado.getY1());
             c.drawCuadrado(imageGraphics, cuadrado.getX0()-5, cuadrado.getY0(), cuadrado.getX1()-5, cuadrado.getY1());
             cuadrado.setX0(cuadrado.getX0()-5);
@@ -1530,7 +1578,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
             Triangulo t = new Triangulo();
             t.setGrosor(triangulo.grosor);
-            t.setSegmentar(triangulo.segmentado);            
+            t.setSegmentar(triangulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             t.drawTriangulo(g, triangulo.getX1()-5, triangulo.getY1(), triangulo.getX2()-5, triangulo.getY2(),triangulo.getX3()-5, triangulo.getY3());
             t.drawTriangulo(imageGraphics, triangulo.getX1()-5, triangulo.getY1(), triangulo.getX2()-5, triangulo.getY2(),triangulo.getX3()-5, triangulo.getY3());
             triangulo.setX1(triangulo.getX1()-5);
@@ -1541,6 +1591,8 @@ public class Pantalla extends javax.swing.JFrame {
             Circunferencia c = new Circunferencia();
             c.setGrosor(circulo.grosor);
             c.setSegmentar(circulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCirculo(g, circulo.getxC()-5, circulo.getyC(), circulo.getRadio());
             c.drawCirculo(imageGraphics, circulo.getxC()-5, circulo.getyC(), circulo.getRadio());
             circulo.setxC(circulo.getxC()-5);            
@@ -1549,7 +1601,9 @@ public class Pantalla extends javax.swing.JFrame {
             Bezier b = new Bezier();
             Point2D[] pts = curva.getPuntos();
             b.setGrosor(curva.grosor);
-            b.setSegmentar(curva.segmentado);            
+            b.setSegmentar(curva.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaIzquierda());
             b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaIzquierda());
             curva.moverPtsCurvaIzquierda();
@@ -1564,6 +1618,8 @@ public class Pantalla extends javax.swing.JFrame {
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             l.drawLinea(g, linea.getX0(), linea.getY0() +5, linea.getX1(), linea.getY1() +5);
             l.drawLinea(imageGraphics, linea.getX0(), linea.getY0() +5, linea.getX1(), linea.getY1() +5);
             linea.setY0(linea.getY0()+5);
@@ -1572,7 +1628,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
             Cuadrado c = new Cuadrado();
             c.setGrosor(cuadrado.grosor);
-            c.setSegmentar(cuadrado.segmentado);            
+            c.setSegmentar(cuadrado.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCuadrado(g, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
             c.drawCuadrado(imageGraphics, cuadrado.getX0(), cuadrado.getY0()-5, cuadrado.getX1(), cuadrado.getY1()-5);
             cuadrado.setY0(cuadrado.getY0()+5);
@@ -1581,7 +1639,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
             Triangulo t = new Triangulo();
             t.setGrosor(triangulo.grosor);
-            t.setSegmentar(triangulo.segmentado);            
+            t.setSegmentar(triangulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             t.drawTriangulo(g, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
             t.drawTriangulo(imageGraphics, triangulo.getX1(), triangulo.getY1()-5, triangulo.getX2(), triangulo.getY2()-5,triangulo.getX3(), triangulo.getY3()-5);
             triangulo.setY1(triangulo.getY1()+5);
@@ -1592,6 +1652,8 @@ public class Pantalla extends javax.swing.JFrame {
             Circunferencia c = new Circunferencia();
             c.setGrosor(circulo.grosor);
             c.setSegmentar(circulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCirculo(g, circulo.getxC(), circulo.getyC()+5, circulo.getRadio());
             c.drawCirculo(imageGraphics, circulo.getxC(), circulo.getyC()+5, circulo.getRadio());
             circulo.setyC(circulo.getyC()+5);            
@@ -1600,7 +1662,9 @@ public class Pantalla extends javax.swing.JFrame {
             Bezier b = new Bezier();
             Point2D[] pts = curva.getPuntos();
             b.setGrosor(curva.grosor);
-            b.setSegmentar(curva.segmentado);            
+            b.setSegmentar(curva.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaAbajo());
             b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaAbajo());
             curva.moverPtsCurvaAbajo();
@@ -1615,6 +1679,8 @@ public class Pantalla extends javax.swing.JFrame {
             Linea l = new Linea ();
             l.setGrosor(linea.grosor);
             l.setSegmentar(linea.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             l.drawLinea(g, linea.getX0()+5, linea.getY0(), linea.getX1()+5, linea.getY1());
             l.drawLinea(imageGraphics, linea.getX0()+5, linea.getY0(), linea.getX1()+5, linea.getY1());
             linea.setX0(linea.getX0()+5);
@@ -1623,7 +1689,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(CuadradoDato cuadrado: mouse.getAlmacen().getCuadradosAlm()){
             Cuadrado c = new Cuadrado();
             c.setGrosor(cuadrado.grosor);
-            c.setSegmentar(cuadrado.segmentado);            
+            c.setSegmentar(cuadrado.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCuadrado(g, cuadrado.getX0()+5, cuadrado.getY0(), cuadrado.getX1()+5, cuadrado.getY1());
             c.drawCuadrado(imageGraphics, cuadrado.getX0()+5, cuadrado.getY0(), cuadrado.getX1()+5, cuadrado.getY1());
             cuadrado.setX0(cuadrado.getX0()+5);
@@ -1632,7 +1700,9 @@ public class Pantalla extends javax.swing.JFrame {
         for(TrianguloDato triangulo: mouse.getAlmacen().getTriangulosAlm()){
             Triangulo t = new Triangulo();
             t.setGrosor(triangulo.grosor);
-            t.setSegmentar(triangulo.segmentado);            
+            t.setSegmentar(triangulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             t.drawTriangulo(g, triangulo.getX1()+5, triangulo.getY1(), triangulo.getX2()+5, triangulo.getY2(),triangulo.getX3()+5, triangulo.getY3());
             t.drawTriangulo(imageGraphics, triangulo.getX1()+5, triangulo.getY1(), triangulo.getX2()+5, triangulo.getY2(),triangulo.getX3()+5, triangulo.getY3());
             triangulo.setX1(triangulo.getX1()+5);
@@ -1643,6 +1713,8 @@ public class Pantalla extends javax.swing.JFrame {
             Circunferencia c = new Circunferencia();
             c.setGrosor(circulo.grosor);
             c.setSegmentar(circulo.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             c.drawCirculo(g, circulo.getxC()+5, circulo.getyC(), circulo.getRadio());
             c.drawCirculo(imageGraphics, circulo.getxC()+5, circulo.getyC(), circulo.getRadio());
             circulo.setxC(circulo.getxC()+5);            
@@ -1651,7 +1723,9 @@ public class Pantalla extends javax.swing.JFrame {
             Bezier b = new Bezier();
             Point2D[] pts = curva.getPuntos();
             b.setGrosor(curva.grosor);
-            b.setSegmentar(curva.segmentado);            
+            b.setSegmentar(curva.segmentado);
+            g.setColor(color);
+            imageGraphics.setColor(color);            
             b.drawBezier((Graphics2D)g, curva.moverPtsCurvaDerecha());
             b.drawBezier((Graphics2D)imageGraphics, curva.moverPtsCurvaDerecha());
             curva.moverPtsCurvaDerecha();
